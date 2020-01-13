@@ -10,15 +10,15 @@ public class Game {
     public static void main(String[] args) {
         System.out.println("Game 1 :");
         Game game1 = new Game();
-        test1(game1);// Beispiel nummer 1 (von Freitag)
+        Spiel1(game1);// Beispiel nummer 1 (von Freitag)
 
         System.out.println("Game 2 :");
         Game game2 = new Game();
-        test2(game2);//Beispiel nummer 2 (von Freitag) -> bei variante 2, ich habe 133 statt 151 bekommen auch wenn ich  selbe rechne, vielleicht rechne ich falsch oder haben wir Freitag was  übersehen!
+        Spiel2(game2);//Beispiel nummer 2 (von Freitag) -> bei variante 2, ich habe 133 statt 151 bekommen auch wenn ich  selbe rechne, vielleicht rechne ich falsch oder haben wir Freitag was  übersehen!
 
         System.out.println("Game 3 :");
         Game game3 = new Game();
-        test3(game3);//Beispiel3(andre Beispiel)
+        Spiel3(game3);//Beispiel3(andre Beispiel)
 
     }
 
@@ -70,7 +70,7 @@ public class Game {
         }
     }
 
-    public static void test1(Game game) {
+    public static void Spiel1(Game game) {
         game.iteration = 0;
         game.wurfelnAccept(5);
         game.wurfelnAccept(3);
@@ -129,7 +129,7 @@ public class Game {
 
     }
 
-    public static void test2(Game game) {
+    public static void Spiel2(Game game) {
         game.iteration = 0;
         game.wurfelnAccept(5);
         game.wurfelnAccept(3);
@@ -189,7 +189,7 @@ public class Game {
 
     }
 
-    public static void test3(Game game) {
+    public static void Spiel3(Game game) {
         game.iteration = 0;
         game.wurfelnAccept(1);
         game.wurfelnAccept(1);
