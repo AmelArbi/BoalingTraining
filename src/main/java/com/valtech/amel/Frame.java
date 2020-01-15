@@ -1,7 +1,7 @@
 package com.valtech.amel;
 
 import java.util.ArrayList;
-        import java.util.List;
+import java.util.List;
 
 public class Frame {
 
@@ -13,27 +13,27 @@ public class Frame {
         nummer = num;
     }
 
-    @Override
+/*    @Override
     public String toString() {
-        if (nummer <9) {
+        if (nummer < 9) {
             return "Frame " + nummer + " [first Throw =" + throwList.get(0) + ", second Throw =" + throwList.get(1)
                     + ", score=" + getScore() + "]";
 
-        } else if (isStrike()){
+        } else if (isStrike()) {
             return "Frame " + nummer + " [first Throw =" + throwList.get(0) + ", second Throw =" + throwList.get(1)
                     + ", third Throw =" + throwList.get(2) + ", fourth Throw =" + throwList.get(3) + ", score="
                     + getScore() + "]";
-        }else if(isSpare()) {
+        } else if (isSpare()) {
             return "Frame " + nummer + " [first Throw =" + throwList.get(0) + ", second Throw =" + throwList.get(1)
                     + ", third Throw =" + throwList.get(2) + ", score="
                     + getScore() + "]";
 
-        }else {
+        } else {
             return "Frame " + nummer + " [first Throw =" + throwList.get(0) + ", second Throw =" + throwList.get(1)
                     + ", score=" + getScore() + "]";
 
         }
-    }
+    }*/
 
     public int getScore() {
         return throwList.stream().mapToInt(i -> i).sum();
