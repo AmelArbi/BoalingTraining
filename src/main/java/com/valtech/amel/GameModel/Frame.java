@@ -1,12 +1,20 @@
-package com.valtech.amel;
+package com.valtech.amel.GameModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Frame {
 
+    public int getNummer() {
+        return nummer;
+    }
+
+    public void setNummer(int nummer) {
+        this.nummer = nummer;
+    }
+
     int nummer;
-    List<Integer> throwList = new ArrayList<>();// statt throw1 und throw2 ich habe eine Liste für throws
+    private List<Integer> throwList = new ArrayList<>();// statt throw1 und throw2 ich habe eine Liste für throws
     // erstellt
 
     public Frame(int num) {
@@ -36,18 +44,26 @@ public class Frame {
     }*/
 
     public int getScore() {
-        return throwList.stream().mapToInt(i -> i).sum();
+        return getThrowList().stream().mapToInt(i -> i).sum();
     }
 
-    boolean isStrike() {
-        return (throwList.get(0) == 10);
+    public boolean isStrike() {
+        return (getThrowList().get(0) == 10);
     }
 
-    boolean isSpare() {
+    public boolean isSpare() {
         if (!isStrike()) {
-            return ((throwList.get(0) + throwList.get(1)) == 10);
+            return ((getThrowList().get(0) + getThrowList().get(1)) == 10);
         } else {
             return false;
         }
+    }
+
+    public List<Integer> getThrowList() {
+        return throwList;
+    }
+
+    public void setThrowList(List<Integer> throwList) {
+        this.throwList = throwList;
     }
 }
