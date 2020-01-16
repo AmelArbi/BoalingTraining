@@ -7,33 +7,18 @@ import com.valtech.amel.GameModel.Frame;
 public class GameView {
 
     public void printFrames(List<Frame> frames) {
-        for (int i = 0; i < frames.size() - 1; i++) {
-            if (frames.get(i).getNummer() < 9) {
-                System.out.println(
-                        "Frame " + frames.get(i).getNummer() + " [first Throw =" + frames.get(i).getThrowList().get(0)
-                                + ", second Throw =" + frames.get(i).getThrowList().get(1)
-                                + ", score=" + frames.get(i).getScore() + "]");
-            } else if (frames.get(i).isStrike()) {
-                System.out.println(
-                        "Frame " + frames.get(i).getNummer() + " [first Throw =" + frames.get(i).getThrowList().get(0)
-                                + ", second Throw =" + frames.get(i).getThrowList().get(1)
-                                + ", third Throw =" + frames.get(i).getThrowList().get(2) + ", fourth Throw =" + frames
-                                .get(i).getThrowList().get(3) + ", score="
-                                + frames.get(i).getScore() + "]");
-            } else if (frames.get(i).isSpare()) {
-                System.out.println(
-                        "Frame " + frames.get(i).getNummer() + " [first Throw =" + frames.get(i).getThrowList().get(0)
-                                + ", second Throw =" + frames.get(i).getThrowList().get(1)
-                                + ", third Throw =" + frames.get(i).getThrowList().get(2) + ", score="
-                                + frames.get(i).getScore() + "]");
+        String message = "";
+        for (int i = 0; i < frames.size(); i++) {
+            message = "Frame " + frames.get(i).getNumber() + " Throws = ";
 
-            } else {
-                System.out.println(
-                        "Frame " + frames.get(i).getNummer() + " [first Throw =" + frames.get(i).getThrowList().get(0)
-                                + ", second Throw =" + frames.get(i).getThrowList().get(1)
-                                + ", score=" + frames.get(i).getScore() + "]");
+            for (int j = 0; j < frames.get(i).getThrowList().size(); j++) {
+
+                message = message + frames.get(i).getThrowList().get(j) + ",  ";
 
             }
+            message = message + "score=" + frames.get(i).getScore();
+            System.out.println(message);
+
         }
     }
 }
