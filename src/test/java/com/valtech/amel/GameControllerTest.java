@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class GameModelTest {
+public class GameControllerTest {
 
     @Test
     public void Game1() {
@@ -94,13 +94,12 @@ public class GameModelTest {
 
         gameController.setIteration(9);
         gameController.wurfelnAccept(10);
-        gameController.wurfelnAccept(0);
         gameController.wurfelnAccept(10);
         gameController.wurfelnAccept(10);
         System.out.println("Score Game 1 Turn " + gameController.getIteration() + " :" + gameController
                 .calculateScore(gameController.getIteration()));
         actual = gameController.calculateScore(gameController.getIteration());
-        expected = 179;
+        expected = 159;
         assertEquals(expected, actual);
 
         gameController.gameView.printFrames(gameController.game.getFrames());
@@ -195,11 +194,10 @@ public class GameModelTest {
         gameController.wurfelnAccept(2);
         gameController.wurfelnAccept(8);
         gameController.wurfelnAccept(6);
-        gameController.wurfelnAccept(0);
         System.out.println("Score Game 2 Turn " + gameController.getIteration() + " :" + gameController
                 .calculateScore(gameController.getIteration()));
         actual = gameController.calculateScore(gameController.getIteration());
-        expected = 133;
+        expected = 127;
         assertEquals(expected, actual);
 
         gameController.gameView.printFrames(gameController.game.getFrames());
@@ -293,11 +291,10 @@ public class GameModelTest {
         gameController.wurfelnAccept(5);
         gameController.wurfelnAccept(5);
         gameController.wurfelnAccept(6);
-        gameController.wurfelnAccept(0);
         System.out.println("Score Game 3 Turn " + gameController.getIteration() + " :" + gameController
                 .calculateScore(gameController.getIteration()));
         actual = gameController.calculateScore(gameController.getIteration());
-        expected = 92;
+        expected = 86;
         assertEquals(expected, actual);
 
         gameController.gameView.printFrames(gameController.game.getFrames());
@@ -390,7 +387,6 @@ public class GameModelTest {
 
         gameController.setIteration(9);
         gameController.wurfelnAccept(10);
-        gameController.wurfelnAccept(0);
         gameController.wurfelnAccept(10);
         gameController.wurfelnAccept(10);
         System.out.println("Score Game 4 Turn " + gameController.getIteration() + " :" + gameController

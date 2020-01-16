@@ -13,12 +13,6 @@ public class GameController {
     public GameController() {
     }
 
-    public GameController(int iteration, Game game, GameView gameView) {
-        this.iteration = iteration;
-        this.game = game;
-        this.gameView = gameView;
-    }
-
     public int getIteration() {
         return iteration;
     }
@@ -39,39 +33,29 @@ public class GameController {
     }
 
     public int calculateScore(Integer iteration) {
-
-        int sum;
+        int sum = game.getFrames().get(iteration).getScore();
         int bonus = 0;
-        if (iteration == 0) {
-            sum = game.getFrames().get(0).getScore();
-        } else {
+        if (iteration > 0) {
 
-            sum = calculateScore(iteration - 1) + game.getFrames().get(iteration).getScore();
+            sum = sum + calculateScore(iteration - 1);
             if (game.getFrames().get(iteration - 1).isSpare()) {
                 bonus = bonus + game.getFrames().get(iteration).getThrowList().get(0);
             } else if ((game.getFrames().get(iteration - 1).isStrike())) {
+
                 bonus = bonus + game.getFrames().get(iteration).getThrowList().get(0) + game.getFrames()
                         .get(iteration).getThrowList().get(1);
-                if ((iteration > 2) && (game.getFrames().get(iteration - 2).isStrike())) {
-                    bonus = bonus + game.getFrames().get(iteration).getThrowList().get(0);
-                }
-            }
-        }
-        if ((iteration == 9)) {
-            if (game.getFrames().get(iteration).isStrike()) {
-                bonus = bonus + game.getFrames().get(iteration).getThrowList().get(2) + game.getFrames()
-                        .get(iteration).getThrowList().get(3);
-            } else if (game.getFrames().get(iteration).isSpare()) {
-                bonus = bonus + game.getFrames().get(iteration).getThrowList().get(2);
-            }
-            if (game.getFrames().get(8).isStrike()) {
 
-                if (game.getFrames().get(9).isStrike()) {
-                    bonus = bonus + game.getFrames().get(9).getThrowList().get(2);
-                }
-            }
-        }
+                if (iteration >= 2) {
+                    if (game.getFrames().get(iteration - 2).isStrike() && game.getFrames().get(iteration - 1)
+                            .isStrike()) {
+                        bonus = bonus + game.getFrames().get(iteration).getThrowList().get(0);
+                    }
 
+                }
+
+            }
+
+        }
         sum = sum + bonus;
         return sum;
     }
