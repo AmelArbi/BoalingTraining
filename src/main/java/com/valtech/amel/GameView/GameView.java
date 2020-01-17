@@ -9,7 +9,7 @@ public class GameView {
     public void printFrames(List<Frame> frames) {
         String message = "";
         for (int i = 0; i < frames.size(); i++) {
-            message = "Frame " + frames.get(i).getNumber() + " Throws = ";
+            message = "Frame " + i + " Throws = ";
 
             for (int j = 0; j < frames.get(i).getThrowList().size(); j++) {
 

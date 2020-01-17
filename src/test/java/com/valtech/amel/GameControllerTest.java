@@ -9,7 +9,6 @@ public class GameControllerTest {
 
     @Test
     public void Game1() {
-        // GameController gameController = new GameController(0,5,3);
         GameController gameController = new GameController();
         gameController.setIteration(0);
         gameController.wurfelnAccept(5);
@@ -25,6 +24,7 @@ public class GameControllerTest {
         gameController.wurfelnAccept(1);
         System.out.println("Score Game 1 Turn " + gameController.getIteration() + " :" + gameController
                 .calculateScore(gameController.getIteration()));
+        System.out.println("expected 1 : " + (gameController.getIteration()));
         actual = gameController.calculateScore(gameController.getIteration());
         expected = 9;
         assertEquals(expected, actual);
@@ -302,7 +302,6 @@ public class GameControllerTest {
 
     @Test
     public void Game4() {//das perfekte Spiel
-        // GameController gameController = new GameController(0,5,3);
         GameController gameController = new GameController();
         gameController.setIteration(0);
         gameController.wurfelnAccept(10);

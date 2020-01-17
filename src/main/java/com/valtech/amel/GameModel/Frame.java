@@ -5,15 +5,9 @@ import java.util.List;
 
 public class Frame {
 
-    private int Number;
-    private List<Integer> throwList = new ArrayList<>(4);
+    private List<Integer> throwList = new ArrayList<>(3);
 
-    public int getNumber() {
-        return Number;
-    }
-
-    public Frame(int Number) {
-        this.Number = Number;
+    public Frame() {
     }
 
     public int getScore() {//sum of throws in one Frame
