@@ -6,8 +6,50 @@ import java.util.List;
 public class Frame {
 
     private final int number;
+    private int bonusCount;
 
-    private List<Integer> throwList = new ArrayList<>(3);
+    public int getNumber() {
+        return number;
+    }
+
+    public int getBonusCount() {
+        return bonusCount;
+    }
+
+    public void incrementBonusCount(int i) {
+        if (i == 1)
+            bonusCount++;
+        else
+            bonusCount += 2;
+
+    }
+
+    public void decrementBonusCount(int i) {
+        bonusCount--;
+
+    }
+
+    private int finalScore;
+    private final List<Integer> throwList = new ArrayList<>(3);
+
+    public int getNumberOfThrows() {
+        return throwList.size();
+
+    }
+
+    public void addBonus(int bonus) {
+        finalScore += bonus;
+        bonusCount--;
+    }
+
+    public void addThrow(int zahl) {
+        throwList.add(zahl);
+        finalScore += zahl;
+    }
+
+    public int getFinalScore() {
+        return finalScore;
+    }
 
     public Frame(int number) {
         this.number = number;
@@ -20,8 +62,8 @@ public class Frame {
             if (isStrike())
                 return true;
         } else {
-            if (!isStrike() && !isSpare()){
-                if(getThrowList().size() == 2) {
+            if (!isStrike() && !isSpare()) {
+                if (getThrowList().size() == 2) {
                     return true;
                 }
             } else {
@@ -49,14 +91,17 @@ public class Frame {
 
     public boolean isSpare() {
         if (!isStrike()) {
-            return getThrowList().size()>1 && ((getThrowList().get(0) + getThrowList().get(1)) == 10);
+            return getThrowList().size() > 1 && ((getThrowList().get(0) + getThrowList().get(1)) == 10);
         } else {
             return false;
         }
     }
 
-    public List<Integer> getThrowList() {
+    private List<Integer> getThrowList() {
         return throwList;
     }
 
+    public int getThrow(int i) {
+        return getThrowList().get(i);
+    }
 }

@@ -1,10 +1,109 @@
-package com.valtech.amel.controller;
+package com.valtech.amel.Controller;
 
 import java.util.stream.IntStream;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class GameControllerBonusTest {
+
+/*    @Test
+    public  void  calculateScoreWithFullScore(){
+        GameController gameController = new GameController();
+
+    }*/
+
+    @Test
+    public void addBonus(){
+        GameController gameController = new GameController();
+        gameController.wurfelnAccept(1);//0
+        System.out.println(gameController.iteration);//0
+        gameController.wurfelnAccept(2);
+        System.out.println(gameController.iteration);//1
+        gameController.wurfelnAccept(10);
+        System.out.println(gameController.iteration);//2
+        assertEquals(0, gameController.game.getFrames().get(0).getBonusCount());
+        assertEquals(2, gameController.game.getFrames().get(1).getBonusCount());
+
+
+
+
+    }
+
+    @Test
+    public void calculateFrameScore(){
+        GameController gameController = new GameController();
+        //
+        gameController.wurfelnAccept(1);//0
+        gameController.wurfelnAccept(2);
+        //
+        gameController.wurfelnAccept(10);//1
+       // gameController.wurfelnAccept(8);//1
+
+        gameController.wurfelnAccept(10);//2
+        gameController.wurfelnAccept(10);//2
+        ////
+        //        gameController.wurfelnAccept(10);//3
+        //
+        //        gameController.wurfelnAccept(10);
+
+        //        assertEquals(3, gameController.calculateScore(0));
+        //        assertEquals(13, gameController.calculateScore(1));
+        //        assertEquals(33, gameController.calculateScore(2));
+        //        assertEquals(63, gameController.calculateScore(3));
+        //        assertEquals(93, gameController.calculateScore(4));
+
+
+        assertEquals(3, gameController.calculateScore(0));
+        assertEquals(23, gameController.calculateScore(1));
+
+
+//        assertEquals(3, gameController.game.getFrames().get(0).getFinalScore());
+//        assertEquals(3, gameController.game.getFrames().get(0).getFinalScore());
+//        assertEquals(20, gameController.game.getFrames().get(1).getFinalScore());
+
+
+
+
+    }
+
+    @Test
+    public void calculateScoreForward(){
+        GameController gameController = new GameController();
+//
+        gameController.wurfelnAccept(1);//0
+        gameController.wurfelnAccept(2);
+//
+        gameController.wurfelnAccept(10);//1
+
+        gameController.wurfelnAccept(10);//2
+////
+//        gameController.wurfelnAccept(10);//3
+//
+//        gameController.wurfelnAccept(10);
+
+//        assertEquals(3, gameController.calculateScore(0));
+//        assertEquals(13, gameController.calculateScore(1));
+//        assertEquals(33, gameController.calculateScore(2));
+//        assertEquals(63, gameController.calculateScore(3));
+//        assertEquals(93, gameController.calculateScore(4));
+
+        assertEquals(3, gameController.game.getFrames().get(0).getFinalScore());
+        assertEquals(20, gameController.game.getFrames().get(1).getFinalScore());
+
+
+    }
+
+    @Test
+    public void LastFrameSpareAddBonusTest() {
+        GameController gameController = new GameController();
+        IntStream.range(0, 18).forEach(i -> gameController.wurfelnAccept(0));
+        gameController.wurfelnAccept(5);
+        gameController.wurfelnAccept(5);
+        gameController.wurfelnAccept(3);
+        assertEquals(0, gameController.getBonus(9));
+        assertEquals(13, gameController.calculateScore());
+
+    }
 
     @Test
     public void LastFrameSpare() {

@@ -1,6 +1,6 @@
 package com.valtech.amel;
 
-import com.valtech.amel.controller.GameController;
+import com.valtech.amel.Controller.GameController;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -118,7 +118,7 @@ public class GameControllerTest {
         gameController.wurfelnAccept(10);
         gameController.wurfelnAccept(10);
         gameController.wurfelnAccept(10);
-        assertEquals(3,gameController.game.getFrames().get(9).getThrowList().size());
+        assertEquals(3,gameController.game.getFrames().get(9).getNumberOfThrows());
         System.out.printf(
                 "Score Game 1 Turn %d :%d%n",
                 gameController.getIteration(),
@@ -128,7 +128,7 @@ public class GameControllerTest {
         expected = 159;
         assertEquals(expected, actual);
 
-        gameController.gameView.printFrames(gameController.game.getFrames());
+        gameController.gameView.printFrames(gameController.game.getFrames(),actual);
         System.out.println("9 : " + gameController.game.getFrames().size());
     }
 
@@ -252,7 +252,7 @@ public class GameControllerTest {
         expected = 127;
         assertEquals(expected, actual);
 
-        gameController.gameView.printFrames(gameController.game.getFrames());
+        gameController.gameView.printFrames(gameController.game.getFrames(),actual);
     }
 
     @Test
@@ -378,7 +378,7 @@ public class GameControllerTest {
         expected = 86;
         assertEquals(expected, actual);
 
-        gameController.gameView.printFrames(gameController.game.getFrames());
+        gameController.gameView.printFrames(gameController.game.getFrames(),actual);
     }
 
     @Test
@@ -496,7 +496,7 @@ public class GameControllerTest {
         expected = 300;
         assertEquals(expected, actual);
 
-        gameController.gameView.printFrames(gameController.game.getFrames());
+        gameController.gameView.printFrames(gameController.game.getFrames(),actual);
     }
 
 
@@ -623,7 +623,7 @@ public class GameControllerTest {
         expected = 0;
         assertEquals(expected, actual);
 
-        gameController.gameView.printFrames(gameController.game.getFrames());
+        gameController.gameView.printFrames(gameController.game.getFrames(),actual);
     }
 
     @Test//the worst game
@@ -750,7 +750,7 @@ public class GameControllerTest {
         expected = 21;
         assertEquals(expected, actual);
 
-        gameController.gameView.printFrames(gameController.game.getFrames());
+        gameController.gameView.printFrames(gameController.game.getFrames(),actual);
     }
 
 }
