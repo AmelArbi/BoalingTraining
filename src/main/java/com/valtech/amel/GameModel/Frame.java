@@ -9,59 +9,38 @@ public class Frame {
     private int finalScore;
     private final List<Integer> throwList = new ArrayList<>(3);
 
-    private int bonusCount;
+    //private int bonusCount;//eine alternative zu a
 
     public int getNumber() {
         return number;
     }
-
-    public int getBonusCount() {
-        return bonusCount;
-    }
-
-    public void incrementBonusCount(int i) {
-        if (i == 1)
-            bonusCount++;
-        else
-            bonusCount += 2;
-
-    }
-
-    public void decrementBonusCount(int i) {
-        bonusCount--;
-
-    }
-
-
 
     public int getNumberOfThrows() {
         return throwList.size();
 
     }
 
+    private List<Integer> getThrowList() {
+        return throwList;
+    }
+
+    public int getThrow(int i) {
+        return getThrowList().get(i);
+    }
+
+    public int getFinalScore() {
+        return finalScore;
+    }
+
     public void addBonus(int bonus) {
         finalScore += bonus;
-        bonusCount--;
     }
 
     public void addThrow(int zahl) {
 
         throwList.add(zahl);
         finalScore += zahl;
-       /* if (number < 9) {
-            finalScore += zahl;
 
-        } else if (isSpare() && throwList.size() == 2) {
-            finalScore += zahl;
-
-        } else if (isStrike() && throwList.size() == 1) {
-            finalScore += zahl;
-
-        }*/
-    }
-
-    public int getFinalScore() {
-        return finalScore;
     }
 
     public Frame(int number) {
@@ -110,11 +89,4 @@ public class Frame {
         }
     }
 
-    private List<Integer> getThrowList() {
-        return throwList;
-    }
-
-    public int getThrow(int i) {
-        return getThrowList().get(i);
-    }
 }
