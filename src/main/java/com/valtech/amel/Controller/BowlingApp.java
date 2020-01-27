@@ -28,9 +28,28 @@ public class BowlingApp {
         throwResult =
                 getThrowResult(gameControllerPlayerGame.game.getPlayerName() + " enter your first throw : ");
         gameControllerPlayerGame.wurfelnAccept(throwResult);
-        if (!gameControllerPlayerGame.game.getFrames().get(iteration).isStrike()) {
+        if (!gameControllerPlayerGame.getFrame(iteration).isStrike()) {
             throwResult = getThrowResult(
                     gameControllerPlayerGame.game.getPlayerName() + " enter your second throw : ");
+            gameControllerPlayerGame.wurfelnAccept(throwResult);
+
+        }
+
+        if (gameControllerPlayerGame.getFrame(iteration).isLastFrame() && gameControllerPlayerGame.getFrame(iteration)
+                .isSpare()) {
+            throwResult = getThrowResult(
+                    gameControllerPlayerGame.game.getPlayerName() + " enter your third throw : ");
+            gameControllerPlayerGame.wurfelnAccept(throwResult);
+
+        }
+
+        if (gameControllerPlayerGame.getFrame(iteration).isLastFrame() && gameControllerPlayerGame.getFrame(iteration)
+                .isStrike()) {
+            throwResult = getThrowResult(
+                    gameControllerPlayerGame.game.getPlayerName() + " enter your second throw : ");
+            gameControllerPlayerGame.wurfelnAccept(throwResult);
+            throwResult = getThrowResult(
+                    gameControllerPlayerGame.game.getPlayerName() + " enter your third throw : ");
             gameControllerPlayerGame.wurfelnAccept(throwResult);
 
         }
@@ -54,7 +73,7 @@ public class BowlingApp {
     }
 
     /*int getNumberOfPlayer(String message) {
-        boolean valid = false;
+        boolean valid = false;1
         int zahl = 0;
         while (!valid) {
             System.out.println(message);

@@ -18,7 +18,7 @@ public class GameController {
     }
 
     public Frame getFrame(int Iteration) {
-        return game.getFrames().get(iteration);
+        return game.getFrames().get(Iteration);
 
     }
 
@@ -34,8 +34,9 @@ public class GameController {
         Frame frame = new Frame(iteration);
         frame.addThrow(zahl);
         game.getFrames().add(frame);
-        addBonus(iteration);
+
         if (frame.isComplete()) {
+            addBonus(iteration);
             iteration++;
         }
 
@@ -44,9 +45,11 @@ public class GameController {
     private void wuerfelnAcceptExistingFrame(int zahl) {
         Frame currentFrame = game.getFrames().get(iteration);
         currentFrame.addThrow(zahl);
-        addBonus(iteration);
+
         if (currentFrame.isComplete()) {
+            addBonus(iteration);
             iteration++;
+            System.out.println("iteration im Wuerfel :" + iteration + " Frame Number" + currentFrame.getNumber());
         }
 
     }
@@ -66,39 +69,15 @@ public class GameController {
     public void addBonus(int iteration) {
         Frame currentFrame = game.getFrames().get(iteration);
 
-        if (iteration > 0) {
+        if (currentFrame.getNumber() > 0) {
             Frame prevFrame = game.getFrames().get(iteration - 1);
-            if (iteration >= 2) {
-                Frame prePrevFrame = game.getFrames().get(iteration - 2);
 
-                if (prePrevFrame.isStrike() && prevFrame.isStrike()) {
-                    prePrevFrame.addBonus(currentFrame.getThrow(0));
-                }
+            if (currentFrame.getNumber() < 9) {
 
-            }
+                addBonusBeforeLastFrame(iteration, currentFrame, prevFrame);
 
-            if (iteration < 9) {
-
-                if (prevFrame.isSpare()) {
-                    prevFrame.addBonus(currentFrame.getThrow(0));
-                } else if ((prevFrame.isStrike())) {
-                    prevFrame.addBonus(currentFrame.getThrow(0));
-                   // if (!currentFrame.isStrike() || (currentFrame.getNumberOfThrows() >= 2)) {
-                    if (!currentFrame.isStrike()) {
-                    prevFrame.addBonus(currentFrame.getThrow(1));
-                    }
-                }
-
-            }
-            else if (iteration==9){
-                if (prevFrame.isSpare()) {
-                    prevFrame.addBonus(currentFrame.getThrow(0));
-                } else if ((prevFrame.isStrike())) {
-                    prevFrame.addBonus(currentFrame.getThrow(0));
-                    if (currentFrame.getNumberOfThrows() >= 2) {
-                        prevFrame.addBonus(currentFrame.getThrow(1));
-                    }
-                }
+            } else if (currentFrame.getNumber() == 9) {
+                addBonusLastFrame(iteration, currentFrame, prevFrame);
 
             }
 
@@ -106,9 +85,71 @@ public class GameController {
 
     }
 
-    //        if (iteration == 9 && prevFrame.isStrike() && !currentFrame.isSpare()) {
-    //            prevFrame.addBonus(currentFrame.getThrow(1));
-    //        }
+    private void addBonusLastFrame(int iteration, Frame currentFrame, Frame prevFrame) {
+        Frame prePrevFrame = game.getFrames().get(currentFrame.getNumber() - 2);
+        System.out.println("iteration im Addbonus" + iteration + " number Frame : " + currentFrame.getNumber());
+
+        if (prePrevFrame.isStrike() && prevFrame.isStrike()) {
+
+            prePrevFrame.addBonus(currentFrame.getThrow(0));
+
+        }
+
+        if (prevFrame.isSpare()) {
+            prevFrame.addBonus(currentFrame.getThrow(0));
+        } else if ((prevFrame.isStrike())) {
+            prevFrame.addBonus(currentFrame.getThrow(0));
+            prevFrame.addBonus(currentFrame.getThrow(1));
+
+        }
+
+/*            if (prePrevFrame.isStrike() && prevFrame.isStrike()) {
+                if (!currentFrame.isSpare() && !currentFrame.isStrike()) {
+                    prePrevFrame.addBonus(currentFrame.getThrow(0));
+
+                } else if ((currentFrame.isStrike() && (currentFrame.getNumberOfThrows() == 1))) {
+                    prePrevFrame.addBonus(currentFrame.getThrow(0));
+
+                } else if (currentFrame.isSpare() && currentFrame.getNumberOfThrows() == 2) {
+                    prePrevFrame.addBonus(currentFrame.getThrow(0));
+
+                }
+
+            }
+
+            if (prevFrame.isSpare()) {
+                prevFrame.addBonus(currentFrame.getThrow(0));
+            } else if ((prevFrame.isStrike())) {
+                prevFrame.addBonus(currentFrame.getThrow(0));
+                if (currentFrame.getNumberOfThrows() == 2) {
+                    prevFrame.addBonus(currentFrame.getThrow(1));
+                }
+            }*/
+
+    }
+
+    private void addBonusBeforeLastFrame(int iteration, Frame currentFrame, Frame prevFrame) {
+        if (iteration >= 2) {
+            Frame prePrevFrame = game.getFrames().get(iteration - 2);
+
+            if (prePrevFrame.isStrike() && prevFrame.isStrike()) {
+                prePrevFrame.addBonus(currentFrame.getThrow(0));
+            }
+
+        }
+        //if(currentFrame.isComplete()){
+        if (prevFrame.isSpare()) {
+            prevFrame.addBonus(currentFrame.getThrow(0));
+        } else if ((prevFrame.isStrike())) {
+            prevFrame.addBonus(currentFrame.getThrow(0));
+            if (!currentFrame.isStrike()) {
+                prevFrame.addBonus(currentFrame.getThrow(1));
+            }
+        }
+
+        // }
+
+    }
 
     public int calculateScore() {
         //return calculateScoreForward(iteration - 1);

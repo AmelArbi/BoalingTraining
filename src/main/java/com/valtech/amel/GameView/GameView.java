@@ -49,7 +49,8 @@ public class GameView {
         for (int k = 0; k < gameController.game.getFrames().size(); k++) {
 
             if (gameController.game.getFrames().get(k).isLastFrame()) {
-                if (!gameController.game.getFrames().get(k).isStrike() && !gameController.game.getFrames().get(k).isSpare()) {
+                if (!gameController.game.getFrames().get(k).isStrike() && !gameController.game.getFrames().get(k)
+                        .isSpare()) {
                     System.out.format(formatLastThrow,
                             gameController.game.getFrames().get(k).getThrow(0),
                             gameController.game.getFrames().get(k).getThrow(1), "");
@@ -66,29 +67,24 @@ public class GameView {
                                 gameController.game.getFrames().get(k).getThrow(1),
                                 gameController.game.getFrames().get(k).getThrow(2));
 
-
                     }
 
-                }else{
-                    if (!gameController.game.getFrames().get(k).isComplete()){
+                } else {
+                    if (!gameController.game.getFrames().get(k).isComplete()) {
                         System.out.format(formatLastThrow,
                                 gameController.game.getFrames().get(k).getThrow(0),
                                 "",
                                 "");
 
-                    }else{
+                    } else {
                         System.out.format(formatLastThrow,
                                 gameController.game.getFrames().get(k).getThrow(0),
                                 gameController.game.getFrames().get(k).getThrow(1),
                                 gameController.game.getFrames().get(k).getThrow(2));
 
-
                     }
 
                 }
-
-
-
 
             } else if (!gameController.game.getFrames().get(k).isStrike()) {
                 System.out.format(formatThrow,
