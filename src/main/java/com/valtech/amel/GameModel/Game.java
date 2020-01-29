@@ -6,13 +6,7 @@ import java.util.List;
 public class Game {
 
     private List<Frame> frames = new ArrayList<>(10);
-
-    private int Number;
     String playerName;
-
-    public void setNumber(int number) {
-        Number = number;
-    }
 
     public String getPlayerName() {
         return playerName;

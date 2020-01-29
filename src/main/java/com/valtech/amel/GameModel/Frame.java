@@ -28,19 +28,25 @@ public class Frame {
         return getThrowList().get(i);
     }
 
+
+    public int getScore() {
+        return getThrowList().stream().mapToInt(i -> i).sum();
+    }
+
     public int getFinalScore() {
         return finalScore;
     }
 
-    public void addBonus(int bonus) {
-        finalScore += bonus;
-    }
 
     public void addThrow(int zahl) {
 
         throwList.add(zahl);
         finalScore += zahl;
 
+    }
+
+    public void addBonus(int bonus) {
+        finalScore += bonus;
     }
 
     public Frame(int number) {
@@ -71,10 +77,6 @@ public class Frame {
     public boolean isLastFrame() {
         return number == 9;
 
-    }
-
-    public int getScore() {//sum of throws in one Frame
-        return getThrowList().stream().mapToInt(i -> i).sum();
     }
 
     public boolean isStrike() {
