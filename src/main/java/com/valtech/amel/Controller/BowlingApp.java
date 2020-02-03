@@ -19,7 +19,7 @@ public class BowlingApp {
             System.out.println("Please enter the name of the player number " + (i + 1) + " : ");
             bowlingApp.playersGames.get(i).game.setPlayerName(bowlingApp.myScanner.nextLine());
         }
-        gameController.game.setPlayerName("Alex");
+        
         for (int i = 0; i < 10; i++) {
             System.out.println(" ------------------------Iteration " + (i + 1) + "----------------------------");
             for (int j = 0; j < numberOfPlayers; j++) {
