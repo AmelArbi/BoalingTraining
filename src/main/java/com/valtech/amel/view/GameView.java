@@ -1,9 +1,8 @@
-package com.valtech.amel.GameView;
+package com.valtech.amel.view;
 
-import java.sql.SQLOutput;
 import java.util.List;
-import com.valtech.amel.Controller.GameController;
-import com.valtech.amel.GameModel.Frame;
+import com.valtech.amel.controller.GameController;
+import com.valtech.amel.model.Frame;
 
 public class GameView {
 

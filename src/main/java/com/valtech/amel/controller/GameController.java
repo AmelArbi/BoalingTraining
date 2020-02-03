@@ -1,8 +1,8 @@
-package com.valtech.amel.Controller;
+package com.valtech.amel.controller;
 
-import com.valtech.amel.GameModel.Frame;
-import com.valtech.amel.GameModel.Game;
-import com.valtech.amel.GameView.GameView;
+import com.valtech.amel.model.Frame;
+import com.valtech.amel.model.Game;
+import com.valtech.amel.view.GameView;
 
 public class GameController {
 

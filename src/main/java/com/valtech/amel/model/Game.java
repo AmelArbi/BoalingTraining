@@ -1,4 +1,4 @@
-package com.valtech.amel.GameModel;
+package com.valtech.amel.model;
 
 import java.util.ArrayList;
 import java.util.List;

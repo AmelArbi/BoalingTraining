@@ -1,4 +1,4 @@
-package com.valtech.amel.Controller;
+package com.valtech.amel.controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +11,11 @@ public class BowlingApp {
 
     public static void main(String[] args) {
         BowlingApp bowlingApp = new BowlingApp();
+        startGame(bowlingApp);
+
+    }
+
+    private static void startGame(BowlingApp bowlingApp) {
         System.out.println(" ------------------------Game Start-----------------------------");
         GameController gameController = new GameController();
         int numberOfPlayers = bowlingApp.getValidNumber("Please Enter the number of Players : ", 2, 6);
@@ -19,7 +24,7 @@ public class BowlingApp {
             System.out.println("Please enter the name of the player number " + (i + 1) + " : ");
             bowlingApp.playersGames.get(i).game.setPlayerName(bowlingApp.myScanner.nextLine());
         }
-        
+
         for (int i = 0; i < 10; i++) {
             System.out.println(" ------------------------Iteration " + (i + 1) + "----------------------------");
             for (int j = 0; j < numberOfPlayers; j++) {
@@ -31,7 +36,6 @@ public class BowlingApp {
             }
 
         }
-
     }
 
     void getTurn(GameController gameControllerPlayerGame, int iteration) {

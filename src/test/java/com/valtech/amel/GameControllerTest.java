@@ -1,6 +1,6 @@
 package com.valtech.amel;
 
-import com.valtech.amel.Controller.GameController;
+import com.valtech.amel.controller.GameController;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

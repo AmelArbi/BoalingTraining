@@ -1,4 +1,4 @@
-package com.valtech.amel.Controller;
+package com.valtech.amel.controller;
 
 import java.util.stream.IntStream;
 import org.junit.Test;
