@@ -6,13 +6,19 @@ import com.valtech.amel.view.GameView;
 
 public class GameController {
 
-    public int iteration = 0;
-    public Game game = new Game();
-    public GameView gameView = new GameView();
 
-    public int getIteration() {
-        return iteration;
+    private Game game = new Game();
+    private GameView gameView = new GameView();
+
+    public Game getGame() {
+        return game;
     }
+
+    public GameView getGameView() {
+        return gameView;
+    }
+
+
 
     public Frame getFrame(int iteration) {
         return game.getFrames().get(iteration);
@@ -20,32 +26,36 @@ public class GameController {
     }
 
     public void wurfelnAccept(int zahl) {
-        if (game.getFrames().size() == iteration) {
-            wuerfelnAcceptNewFrame(zahl);
-        } else {
-            wuerfelnAcceptExistingFrame(zahl);
+        if (game.getIteration() <= 9) {
+            if (game.getFrames().size() == game.getIteration() ) {
+                wuerfelnAcceptNewFrame(zahl);
+            } else {
+                wuerfelnAcceptExistingFrame(zahl);
+            }
+
         }
+
     }
 
     private void wuerfelnAcceptNewFrame(int zahl) {
-        Frame frame = new Frame(iteration);
+        Frame frame = new Frame(game.getIteration() );
         frame.addThrow(zahl);
         game.getFrames().add(frame);
 
         if (frame.isComplete()) {
-            addBonus(iteration);
-            iteration++;
+            addBonus(game.getIteration() );
+            game.setIteration(game.getIteration()+1);
         }
 
     }
 
     private void wuerfelnAcceptExistingFrame(int zahl) {
-        Frame currentFrame = game.getFrames().get(iteration);
+        Frame currentFrame = game.getFrames().get(game.getIteration());
         currentFrame.addThrow(zahl);
 
         if (currentFrame.isComplete()) {
-            addBonus(iteration);
-            iteration++;
+            addBonus(game.getIteration());
+            game.setIteration(game.getIteration()+1);
         }
 
     }
@@ -106,7 +116,7 @@ public class GameController {
     }
 
     public int calculateScore() {
-        return calculateScoreWithFullScore(iteration);
+        return calculateScoreWithFullScore(game.getIteration());
 
     }
 

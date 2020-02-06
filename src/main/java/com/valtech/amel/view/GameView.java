@@ -45,81 +45,81 @@ public class GameView {
         System.out.println("----------------------------------------------------------------");
         System.out.print("|");
 
-        for (int k = 0; k < gameController.game.getFrames().size(); k++) {
+        for (int k = 0; k < gameController.getGame().getFrames().size(); k++) {
 
-            if (gameController.game.getFrames().get(k).isLastFrame()) {
-                if (!gameController.game.getFrames().get(k).isStrike() && !gameController.game.getFrames().get(k)
+            if (gameController.getGame().getFrames().get(k).isLastFrame()) {
+                if (!gameController.getGame().getFrames().get(k).isStrike() && !gameController.getGame().getFrames().get(k)
                         .isSpare()) {
                     System.out.format(formatLastThrow,
-                            gameController.game.getFrames().get(k).getThrow(0),
-                            gameController.game.getFrames().get(k).getThrow(1), "");
+                            gameController.getGame().getFrames().get(k).getThrow(0),
+                            gameController.getGame().getFrames().get(k).getThrow(1), "");
 
-                } else if (gameController.game.getFrames().get(k).isSpare()) {
-                    if (!gameController.game.getFrames().get(k).isComplete()) {
+                } else if (gameController.getGame().getFrames().get(k).isSpare()) {
+                    if (!gameController.getGame().getFrames().get(k).isComplete()) {
                         System.out.format(formatLastThrow,
-                                gameController.game.getFrames().get(k).getThrow(0),
-                                gameController.game.getFrames().get(k).getThrow(1), "");
+                                gameController.getGame().getFrames().get(k).getThrow(0),
+                                gameController.getGame().getFrames().get(k).getThrow(1), "");
 
                     } else {
                         System.out.format(formatLastThrow,
-                                gameController.game.getFrames().get(k).getThrow(0),
-                                gameController.game.getFrames().get(k).getThrow(1),
-                                gameController.game.getFrames().get(k).getThrow(2));
+                                gameController.getGame().getFrames().get(k).getThrow(0),
+                                gameController.getGame().getFrames().get(k).getThrow(1),
+                                gameController.getGame().getFrames().get(k).getThrow(2));
 
                     }
 
                 } else {
-                    if (!gameController.game.getFrames().get(k).isComplete()) {
+                    if (!gameController.getGame().getFrames().get(k).isComplete()) {
                         System.out.format(formatLastThrow,
-                                gameController.game.getFrames().get(k).getThrow(0),
+                                gameController.getGame().getFrames().get(k).getThrow(0),
                                 "",
                                 "");
 
                     } else {
                         System.out.format(formatLastThrow,
-                                gameController.game.getFrames().get(k).getThrow(0),
-                                gameController.game.getFrames().get(k).getThrow(1),
-                                gameController.game.getFrames().get(k).getThrow(2));
+                                gameController.getGame().getFrames().get(k).getThrow(0),
+                                gameController.getGame().getFrames().get(k).getThrow(1),
+                                gameController.getGame().getFrames().get(k).getThrow(2));
 
                     }
 
                 }
 
-            } else if (!gameController.game.getFrames().get(k).isStrike()) {
+            } else if (!gameController.getGame().getFrames().get(k).isStrike()) {
                 System.out.format(formatThrow,
-                        gameController.game.getFrames().get(k).getThrow(0),
-                        gameController.game.getFrames().get(k).getThrow(1));
+                        gameController.getGame().getFrames().get(k).getThrow(0),
+                        gameController.getGame().getFrames().get(k).getThrow(1));
 
             } else {
                 System.out.format(formatThrow,
-                        gameController.game.getFrames().get(k).getThrow(0), "");
+                        gameController.getGame().getFrames().get(k).getThrow(0), "");
 
             }
 
         }
-        for (int l = gameController.game.getFrames().size(); l < 9; l++) {
+        for (int l = gameController.getGame().getFrames().size(); l < 9; l++) {
 
             System.out.format(formatThrow, "", "");
 
         }
-        if (gameController.game.getFrames().size() != 10)
+        if (gameController.getGame().getFrames().size() != 10)
             System.out.format(formatLastThrow, "", "", "");
 
         System.out.println();
         System.out.println("----------------------------------------------------------------");
         System.out.print("|");
-        for (int l = 0; l < gameController.game.getFrames().size(); l++) {
-            if (!gameController.game.getFrames().get(l).isLastFrame())
+        for (int l = 0; l < gameController.getGame().getFrames().size(); l++) {
+            if (!gameController.getGame().getFrames().get(l).isLastFrame())
                 System.out.format(formatSum, gameController.calculateScoreWithFullScore(l + 1));
             else
                 System.out.format(formatLastSum, gameController.calculateScoreWithFullScore(l + 1));
 
         }
-        for (int l = gameController.game.getFrames().size(); l < 9; l++) {
+        for (int l = gameController.getGame().getFrames().size(); l < 9; l++) {
             System.out.format(formatLeerSum, "");
 
         }
-        if (gameController.game.getFrames().size() != 10)
+        if (gameController.getGame().getFrames().size() != 10)
             System.out.format(formatLastLeerSum, "", "", "");
 
         System.out.println();

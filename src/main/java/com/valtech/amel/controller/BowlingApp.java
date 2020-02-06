@@ -11,37 +11,44 @@ public class BowlingApp {
 
     public static void main(String[] args) {
         BowlingApp bowlingApp = new BowlingApp();
-        startGame(bowlingApp);
+        bowlingApp.startGame();
 
     }
 
-    private static void startGame(BowlingApp bowlingApp) {
+    private  void startGame() {
         System.out.println(" ------------------------Game Start-----------------------------");
-        GameController gameController = new GameController();
-        int numberOfPlayers = bowlingApp.getValidNumber("Please Enter the number of Players : ", 2, 6);
-        for (int i = 0; i < numberOfPlayers; i++) {
-            bowlingApp.playersGames.add(new GameController());
-            System.out.println("Please enter the name of the player number " + (i + 1) + " : ");
-            bowlingApp.playersGames.get(i).game.setPlayerName(bowlingApp.myScanner.nextLine());
+        int numberOfPlayers = getValidNumber("Please Enter the number of Players : ", 2, 6);
+        setGames(numberOfPlayers);
+
+        for (int iteration = 0; iteration < 10; iteration++) {
+            System.out.println(" ------------------------Iteration " + (iteration + 1) + "----------------------------");
+            spielen(numberOfPlayers, iteration);
+
         }
+    }
 
-        for (int i = 0; i < 10; i++) {
-            System.out.println(" ------------------------Iteration " + (i + 1) + "----------------------------");
-            for (int j = 0; j < numberOfPlayers; j++) {
-                bowlingApp.getTurn(bowlingApp.playersGames.get(j), i);
-                System.out.println();
-                System.out.println("Score table of " + bowlingApp.playersGames.get(j).game.getPlayerName());
-                bowlingApp.playersGames.get(j).gameView.showFrames(bowlingApp.playersGames.get(j));
+    private void spielen(int numberOfPlayers, int iteration) {
+        for (int j = 0; j < numberOfPlayers; j++) {
+            getTurn(playersGames.get(j), iteration);
+            System.out.println();
+            System.out.println("Score table of " + playersGames.get(j).getGame().getPlayerName());
+            playersGames.get(j).getGameView().showFrames(playersGames.get(j));
 
-            }
+        }
+    }
 
+    private void setGames(int numberOfPlayers) {
+        for (int i = 0; i < numberOfPlayers; i++) {
+            playersGames.add(new GameController());
+            System.out.println("Please enter the name of the player number " + (i + 1) + " : ");
+            playersGames.get(i).getGame().setPlayerName(myScanner.nextLine());
         }
     }
 
     void getTurn(GameController gameControllerPlayerGame, int iteration) {
         int throwResult;
         throwResult =
-                getValidNumber(gameControllerPlayerGame.game.getPlayerName() + " enter your first throw : ", 0, 10);
+                getValidNumber(gameControllerPlayerGame.getGame().getPlayerName() + " enter your first throw : ", 0, 10);
         gameControllerPlayerGame.wurfelnAccept(throwResult);
         if (!gameControllerPlayerGame.getFrame(iteration).isStrike()) {
             throwResult = getNextThrow(gameControllerPlayerGame, iteration, throwResult);
@@ -52,7 +59,7 @@ public class BowlingApp {
         if (gameControllerPlayerGame.getFrame(iteration).isLastFrame() && gameControllerPlayerGame.getFrame(iteration)
                 .isSpare()) {
             throwResult = getValidNumber(
-                    gameControllerPlayerGame.game.getPlayerName() + " enter your third throw : ", 0, 10);
+                    gameControllerPlayerGame.getGame().getPlayerName() + " enter your third throw : ", 0, 10);
             gameControllerPlayerGame.wurfelnAccept(throwResult);
 
         }
@@ -60,10 +67,10 @@ public class BowlingApp {
         if (gameControllerPlayerGame.getFrame(iteration).isLastFrame() && gameControllerPlayerGame.getFrame(iteration)
                 .isStrike()) {
             throwResult = getValidNumber(
-                    gameControllerPlayerGame.game.getPlayerName() + " enter your second throw : ", 0, 10);
+                    gameControllerPlayerGame.getGame().getPlayerName() + " enter your second throw : ", 0, 10);
             gameControllerPlayerGame.wurfelnAccept(throwResult);
             throwResult = getValidNumber(
-                    gameControllerPlayerGame.game.getPlayerName() + " enter your third throw : ", 0, 10);
+                    gameControllerPlayerGame.getGame().getPlayerName() + " enter your third throw : ", 0, 10);
             gameControllerPlayerGame.wurfelnAccept(throwResult);
 
         }
@@ -91,7 +98,7 @@ public class BowlingApp {
         boolean valid = false;
         while (!valid) {
             throwResult = getValidNumber(
-                    gameControllerPlayerGame.game.getPlayerName() + " enter your second throw : ", 0, 10);
+                    gameControllerPlayerGame.getGame().getPlayerName() + " enter your second throw : ", 0, 10);
 
             valid = ((throwResult + gameControllerPlayerGame.getFrame(iteration).getThrow(0)) <= 10);
 

@@ -1,756 +1,692 @@
-package com.valtech.amel;
+package com.valtech.amel.controller;
 
-import com.valtech.amel.controller.GameController;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import static org.junit.Assert.assertEquals;
 
-import static org.junit.Assert.*;
+public class GameControllerRegressionTests {
 
-public class GameControllerTest {
+    Logger logger = LoggerFactory.getLogger(GameControllerTest.class);
 
     @Test
-    public void Game1() {
+    public void GameOneSpareFiveStrike() {
         GameController gameController = new GameController();
-        //gameController.setIteration(0);
         gameController.wurfelnAccept(5);
         gameController.wurfelnAccept(3);
-        System.out.printf(
-                "Score Game 1 Turn %d :%d%n",
-                gameController.getIteration(),
+        logger.info(
+                "Score Game one Spare  and five Strike Turn {} {}",
+                gameController.getGame().getIteration(),
                 gameController.calculateScore()
         );
         int actual = gameController.calculateScore();
         int expected = 8;
         assertEquals(expected, actual);
 
-        //gameController.setIteration(1);
         gameController.wurfelnAccept(0);
         gameController.wurfelnAccept(1);
-        System.out.printf(
-                "Score Game 1 Turn %d :%d%n",
-                gameController.getIteration(),
+        logger.info(
+                "Score Game one Spare  and five Strike Turn {} {}",
+                gameController.getGame().getIteration(),
                 gameController.calculateScore()
         );
         actual = gameController.calculateScore();
         expected = 9;
         assertEquals(expected, actual);
 
-        //gameController.setIteration(2);
         gameController.wurfelnAccept(5);
         gameController.wurfelnAccept(5);
-        System.out.printf(
-                "Score Game 1 Turn %d :%d%n",
-                gameController.getIteration(),
+        logger.info(
+                "Score Game one Spare  and five Strike Turn {} {}",
+                gameController.getGame().getIteration(),
                 gameController.calculateScore()
         );
         actual = gameController.calculateScore();
         expected = 19;
         assertEquals(expected, actual);
 
-        //gameController.setIteration(3);
         gameController.wurfelnAccept(1);
         gameController.wurfelnAccept(4);
-        System.out.printf(
-                "Score Game 1 Turn %d :%d%n",
-                gameController.getIteration(),
+        logger.info(
+                "Score Game one Spare  and five Strike Turn {} {}",
+                gameController.getGame().getIteration(),
                 gameController.calculateScore()
         );
         actual = gameController.calculateScore();
         expected = 25;
         assertEquals(expected, actual);
 
-        //gameController.setIteration(4);
         gameController.wurfelnAccept(10);
-        System.out.printf(
-                "Score Game 1 Turn %d :%d%n",
-                gameController.getIteration(),
+        logger.info(
+                "Score Game one Spare  and five Strike Turn {} {}",
+                gameController.getGame().getIteration(),
                 gameController.calculateScore()
         );
         actual = gameController.calculateScore();
         expected = 35;
         assertEquals(expected, actual);
 
-        //gameController.setIteration(5);
         gameController.wurfelnAccept(1);
         gameController.wurfelnAccept(1);
-        System.out.printf(
-                "Score Game 1 Turn %d :%d%n",
-                gameController.getIteration(),
+        logger.info(
+                "Score Game one Spare  and five Strike Turn {} {}",
+                gameController.getGame().getIteration(),
                 gameController.calculateScore()
         );
         actual = gameController.calculateScore();
         expected = 39;
         assertEquals(expected, actual);
 
-        //gameController.setIteration(6);
         gameController.wurfelnAccept(10);
-        System.out.printf(
-                "Score Game 1 Turn %d :%d%n",
-                gameController.getIteration(),
+        logger.info(
+                "Score Game one Spare  and five Strike Turn {} {}",
+                gameController.getGame().getIteration(),
                 gameController.calculateScore()
         );
         actual = gameController.calculateScore();
         expected = 49;
         assertEquals(expected, actual);
 
-        //gameController.setIteration(7);
         gameController.wurfelnAccept(10);
-        System.out.printf(
-                "Score Game 1 Turn %d :%d%n",
-                gameController.getIteration(),
+        logger.info(
+                "Score Game one Spare  and five Strike Turn {} {}",
+                gameController.getGame().getIteration(),
                 gameController.calculateScore()
         );
         actual = gameController.calculateScore();
         expected = 69;
         assertEquals(expected, actual);
 
-        //gameController.setIteration(8);
         gameController.wurfelnAccept(10);
-        System.out.printf(
-                "Score Game 1 Turn %d :%d%n",
-                gameController.getIteration(),
+        logger.info(
+                "Score Game one Spare  and five Strike Turn {} {}",
+                gameController.getGame().getIteration(),
                 gameController.calculateScore()
         );
         actual = gameController.calculateScore();
         expected = 99;
         assertEquals(expected, actual);
 
-        //gameController.setIteration(9);
         gameController.wurfelnAccept(10);
         gameController.wurfelnAccept(10);
         gameController.wurfelnAccept(10);
-        assertEquals(3,gameController.game.getFrames().get(9).getNumberOfThrows());
-        System.out.printf(
-                "Score Game 1 Turn %d :%d%n",
-                gameController.getIteration(),
+        assertEquals(3, gameController.getGame().getFrames().get(9).getNumberOfThrows());
+        logger.info(
+                "Score Game one Spare  and five Strike Turn {} {}",
+                gameController.getGame().getIteration(),
                 gameController.calculateScore()
         );
         actual = gameController.calculateScore();
         expected = 159;
         assertEquals(expected, actual);
-
-        gameController.gameView.printFrames(gameController.game.getFrames(),actual);
-        System.out.println("9 : " + gameController.game.getFrames().size());
     }
 
     @Test
-    public void Spiel2() {
+    public void LastFrameSpare() {
         GameController gameController = new GameController();
-        //gameController.setIteration(0);
         gameController.wurfelnAccept(1);
         gameController.wurfelnAccept(1);
-        System.out.printf(
-                "Score Game 1 Turn %d :%d%n",
-                gameController.getIteration(),
+        logger.info(
+                "Score Game Last Frame Spare Turn {} {}",
+                gameController.getGame().getIteration(),
                 gameController.calculateScore()
         );
         int actual = gameController.calculateScore();
         int expected = 2;
         assertEquals(expected, actual);
 
-        //gameController.setIteration(1);
         gameController.wurfelnAccept(7);
         gameController.wurfelnAccept(0);
-        System.out.printf(
-                "Score Game 1 Turn %d :%d%n",
-                gameController.getIteration(),
+        logger.info(
+                "Score Game Last Frame Spare Turn {} {}",
+                gameController.getGame().getIteration(),
                 gameController.calculateScore()
         );
         actual = gameController.calculateScore();
         expected = 9;
         assertEquals(expected, actual);
 
-        //gameController.setIteration(2);
         gameController.wurfelnAccept(5);
         gameController.wurfelnAccept(5);
-        System.out.printf(
-                "Score Game 1 Turn %d :%d%n",
-                gameController.getIteration(),
+        logger.info(
+                "Score Game Last Frame Spare Turn {} {}",
+                gameController.getGame().getIteration(),
                 gameController.calculateScore()
         );
         actual = gameController.calculateScore();
         expected = 19;
         assertEquals(expected, actual);
 
-        //gameController.setIteration(3);
         gameController.wurfelnAccept(1);
         gameController.wurfelnAccept(4);
-        System.out.printf(
-                "Score Game 1 Turn %d :%d%n",
-                gameController.getIteration(),
+        logger.info(
+                "Score Game Last Frame Spare Turn {} {}",
+                gameController.getGame().getIteration(),
                 gameController.calculateScore()
         );
         actual = gameController.calculateScore();
         expected = 25;
         assertEquals(expected, actual);
 
-        //gameController.setIteration(4);
         gameController.wurfelnAccept(10);
-        System.out.printf(
-                "Score Game 1 Turn %d :%d%n",
-                gameController.getIteration(),
+        logger.info(
+                "Score Game Last Frame Spare Turn {} {}",
+                gameController.getGame().getIteration(),
                 gameController.calculateScore()
         );
         actual = gameController.calculateScore();
         expected = 35;
         assertEquals(expected, actual);
 
-        //gameController.setIteration(5);
         gameController.wurfelnAccept(1);
         gameController.wurfelnAccept(1);
-        System.out.printf(
-                "Score Game 1 Turn %d :%d%n",
-                gameController.getIteration(),
+        logger.info(
+                "Score Game Last Frame Spare Turn {} {}",
+                gameController.getGame().getIteration(),
                 gameController.calculateScore()
         );
         actual = gameController.calculateScore();
         expected = 39;
         assertEquals(expected, actual);
 
-        //gameController.setIteration(6);
         gameController.wurfelnAccept(10);
-        System.out.printf(
-                "Score Game 1 Turn %d :%d%n",
-                gameController.getIteration(),
+        logger.info(
+                "Score Game Last Frame Spare Turn {} {}",
+                gameController.getGame().getIteration(),
                 gameController.calculateScore()
         );
         actual = gameController.calculateScore();
         expected = 49;
         assertEquals(expected, actual);
 
-        //gameController.setIteration(7);
         gameController.wurfelnAccept(10);
-        System.out.printf(
-                "Score Game 1 Turn %d :%d%n",
-                gameController.getIteration(),
+        logger.info(
+                "Score Game Last Frame Spare Turn {} {}",
+                gameController.getGame().getIteration(),
                 gameController.calculateScore()
         );
         actual = gameController.calculateScore();
         expected = 69;
         assertEquals(expected, actual);
 
-        //gameController.setIteration(8);
         gameController.wurfelnAccept(10);
-        System.out.printf(
-                "Score Game 1 Turn %d :%d%n",
-                gameController.getIteration(),
+        logger.info(
+                "Score Game Last Frame Spare Turn {} {}",
+                gameController.getGame().getIteration(),
                 gameController.calculateScore()
         );
         actual = gameController.calculateScore();
         expected = 99;
         assertEquals(expected, actual);
 
-        //gameController.setIteration(9);
         gameController.wurfelnAccept(2);
         gameController.wurfelnAccept(8);
         gameController.wurfelnAccept(6);
-        System.out.printf(
-                "Score Game 1 Turn %d :%d%n",
-                gameController.getIteration(),
+        logger.info(
+                "Score Game Last Frame Spare Turn {} {}",
+                gameController.getGame().getIteration(),
                 gameController.calculateScore()
         );
         actual = gameController.calculateScore();
         expected = 127;
         assertEquals(expected, actual);
 
-        gameController.gameView.printFrames(gameController.game.getFrames(),actual);
+        gameController.getGameView().printFrames(gameController.getGame().getFrames(), actual);
     }
 
     @Test
-    public void Spiel3() {
+    public void ForLastFrameStrikeLastFrameSpare() {
         GameController gameController = new GameController();
-        //gameController.setIteration(0);
         gameController.wurfelnAccept(1);
         gameController.wurfelnAccept(1);
-        System.out.printf(
-                "Score Game 1 Turn %d :%d%n",
-                gameController.getIteration(),
+        logger.info(
+                "Score of ForLastFrameStrikeLastFrameSpareGame Turn {} {}",
+                gameController.getGame().getIteration(),
                 gameController.calculateScore()
         );
         int actual = gameController.calculateScore();
         int expected = 2;
         assertEquals(expected, actual);
 
-        //gameController.setIteration(1);
         gameController.wurfelnAccept(2);
         gameController.wurfelnAccept(3);
-        System.out.printf(
-                "Score Game 1 Turn %d :%d%n",
-                gameController.getIteration(),
+        logger.info(
+                "Score of ForLastFrameStrikeLastFrameSpareGame Turn {} {}",
+                gameController.getGame().getIteration(),
                 gameController.calculateScore()
         );
         actual = gameController.calculateScore();
         expected = 7;
         assertEquals(expected, actual);
 
-        //gameController.setIteration(2);
         gameController.wurfelnAccept(5);
         gameController.wurfelnAccept(4);
-        System.out.printf(
-                "Score Game 1 Turn %d :%d%n",
-                gameController.getIteration(),
+        logger.info(
+                "Score of ForLastFrameStrikeLastFrameSpareGame Turn {} {}",
+                gameController.getGame().getIteration(),
                 gameController.calculateScore()
         );
         actual = gameController.calculateScore();
         expected = 16;
         assertEquals(expected, actual);
 
-        //gameController.setIteration(3);
         gameController.wurfelnAccept(6);
         gameController.wurfelnAccept(1);
-        System.out.printf(
-                "Score Game 1 Turn %d :%d%n",
-                gameController.getIteration(),
+        logger.info(
+                "Score of ForLastFrameStrikeLastFrameSpareGame Turn {} {}",
+                gameController.getGame().getIteration(),
                 gameController.calculateScore()
         );
         actual = gameController.calculateScore();
         expected = 23;
         assertEquals(expected, actual);
 
-        //gameController.setIteration(4);
         gameController.wurfelnAccept(1);
         gameController.wurfelnAccept(6);
-        System.out.printf(
-                "Score Game 1 Turn %d :%d%n",
-                gameController.getIteration(),
+        logger.info(
+                "Score of ForLastFrameStrikeLastFrameSpareGame Turn {} {}",
+                gameController.getGame().getIteration(),
                 gameController.calculateScore()
         );
         actual = gameController.calculateScore();
         expected = 30;
         assertEquals(expected, actual);
 
-        //gameController.setIteration(5);
         gameController.wurfelnAccept(7);
         gameController.wurfelnAccept(2);
-        System.out.printf(
-                "Score Game 1 Turn %d :%d%n",
-                gameController.getIteration(),
+        logger.info(
+                "Score of ForLastFrameStrikeLastFrameSpareGame Turn {} {}",
+                gameController.getGame().getIteration(),
                 gameController.calculateScore()
         );
         actual = gameController.calculateScore();
         expected = 39;
         assertEquals(expected, actual);
 
-        //gameController.setIteration(6);
         gameController.wurfelnAccept(0);
         gameController.wurfelnAccept(5);
-        System.out.printf(
-                "Score Game 1 Turn %d :%d%n",
-                gameController.getIteration(),
+        logger.info(
+                "Score of ForLastFrameStrikeLastFrameSpareGame Turn {} {}",
+                gameController.getGame().getIteration(),
                 gameController.calculateScore()
         );
         actual = gameController.calculateScore();
         expected = 44;
         assertEquals(expected, actual);
 
-        //gameController.setIteration(7);
         gameController.wurfelnAccept(3);
         gameController.wurfelnAccept(3);
-        System.out.printf(
-                "Score Game 1 Turn %d :%d%n",
-                gameController.getIteration(),
+        logger.info(
+                "Score of ForLastFrameStrikeLastFrameSpareGame Turn {} {}",
+                gameController.getGame().getIteration(),
                 gameController.calculateScore()
         );
         actual = gameController.calculateScore();
         expected = 50;
         assertEquals(expected, actual);
 
-        //gameController.setIteration(8);
         gameController.wurfelnAccept(10);
-        System.out.printf(
-                "Score Game 1 Turn %d :%d%n",
-                gameController.getIteration(),
+        logger.info(
+                "Score of ForLastFrameStrikeLastFrameSpareGame Turn {} {}",
+                gameController.getGame().getIteration(),
                 gameController.calculateScore()
         );
         actual = gameController.calculateScore();
         expected = 60;
         assertEquals(expected, actual);
 
-        //gameController.setIteration(9);
         gameController.wurfelnAccept(5);
         gameController.wurfelnAccept(5);
         gameController.wurfelnAccept(6);
-        System.out.printf(
-                "Score Game 1 Turn %d :%d%n",
-                gameController.getIteration(),
+        logger.info(
+                "Score of ForLastFrameStrikeLastFrameSpareGame Turn {} {}",
+                gameController.getGame().getIteration(),
                 gameController.calculateScore()
         );
         actual = gameController.calculateScore();
         expected = 86;
         assertEquals(expected, actual);
 
-        gameController.gameView.printFrames(gameController.game.getFrames(),actual);
+        gameController.getGameView().printFrames(gameController.getGame().getFrames(), actual);
     }
 
     @Test
-    public void Game4() {//das perfekte Spiel
+    public void PerfectGame() {
         GameController gameController = new GameController();
-        //gameController.setIteration(0);
         gameController.wurfelnAccept(10);
-        System.out.printf(
-                "Score Game 4 Turn %d :%d%n",
-                gameController.getIteration(),
+        logger.info(
+                "Score perfect  Game Turn {} {}",
+                gameController.getGame().getIteration(),
                 gameController.calculateScore()
         );
         int actual = gameController.calculateScore();
         int expected = 10;
         assertEquals(expected, actual);
 
-        //gameController.setIteration(1);
         gameController.wurfelnAccept(10);
-        System.out.printf(
-                "Score Game 4 Turn %d :%d%n",
-                gameController.getIteration(),
+        logger.info(
+                "Score perfect  Game Turn {} {}",
+                gameController.getGame().getIteration(),
                 gameController.calculateScore()
         );
         actual = gameController.calculateScore();
         expected = 30;
         assertEquals(expected, actual);
 
-        //gameController.setIteration(2);
         gameController.wurfelnAccept(10);
-        System.out.printf(
-                "Score Game 4 Turn %d :%d%n",
-                gameController.getIteration(),
+        logger.info(
+                "Score perfect  Game Turn {} {}",
+                gameController.getGame().getIteration(),
                 gameController.calculateScore()
         );
-        assertEquals(3, gameController.game.getFrames().size());
+        assertEquals(3, gameController.getGame().getFrames().size());
         actual = gameController.calculateScore();
         assertEquals(60, actual);
 
-        //gameController.setIteration(3);
         gameController.wurfelnAccept(10);
-        System.out.printf(
-                "Score Game 4 Turn %d :%d%n",
-                gameController.getIteration(),
+        logger.info(
+                "Score perfect  Game Turn {} {}",
+                gameController.getGame().getIteration(),
                 gameController.calculateScore()
         );
         actual = gameController.calculateScore();
         expected = 90;
         assertEquals(expected, actual);
 
-        //gameController.setIteration(4);
         gameController.wurfelnAccept(10);
-        System.out.printf(
-                "Score Game 4 Turn %d :%d%n",
-                gameController.getIteration(),
+        logger.info(
+                "Score perfect  Game Turn {} {}",
+                gameController.getGame().getIteration(),
                 gameController.calculateScore()
         );
         actual = gameController.calculateScore();
         expected = 120;
         assertEquals(expected, actual);
 
-        //gameController.setIteration(5);
         gameController.wurfelnAccept(10);
-        System.out.printf(
-                "Score Game 4 Turn %d :%d%n",
-                gameController.getIteration(),
+        logger.info(
+                "Score perfect  Game Turn {} {}",
+                gameController.getGame().getIteration(),
                 gameController.calculateScore()
         );
         actual = gameController.calculateScore();
         expected = 150;
         assertEquals(expected, actual);
 
-        //gameController.setIteration(6);
         gameController.wurfelnAccept(10);
-        System.out.printf(
-                "Score Game 4 Turn %d :%d%n",
-                gameController.getIteration(),
+        logger.info(
+                "Score perfect  Game Turn {} {}",
+                gameController.getGame().getIteration(),
                 gameController.calculateScore()
         );
         actual = gameController.calculateScore();
         expected = 180;
         assertEquals(expected, actual);
 
-        //gameController.setIteration(7);
         gameController.wurfelnAccept(10);
-        System.out.printf(
-                "Score Game 4 Turn %d :%d%n",
-                gameController.getIteration(),
+        logger.info(
+                "Score perfect  Game Turn {} {}",
+                gameController.getGame().getIteration(),
                 gameController.calculateScore()
         );
         actual = gameController.calculateScore();
         expected = 210;
         assertEquals(expected, actual);
 
-        //gameController.setIteration(8);
         gameController.wurfelnAccept(10);
-        System.out.printf(
-                "Score Game 4 Turn %d :%d%n",
-                gameController.getIteration(),
+        logger.info(
+                "Score perfect  Game Turn {} {}",
+                gameController.getGame().getIteration(),
                 gameController.calculateScore()
         );
         actual = gameController.calculateScore();
         expected = 240;
         assertEquals(expected, actual);
 
-        //gameController.setIteration(9);
         gameController.wurfelnAccept(10);
         gameController.wurfelnAccept(10);
         gameController.wurfelnAccept(10);
-        System.out.printf(
-                "Score Game 4 Turn %d :%d%n",
-                gameController.getIteration(),
+        logger.info(
+                "Score perfect  Game Turn {} {}",
+                gameController.getGame().getIteration(),
                 gameController.calculateScore()
         );
         actual = gameController.calculateScore();
         expected = 300;
         assertEquals(expected, actual);
 
-        gameController.gameView.printFrames(gameController.game.getFrames(),actual);
+        gameController.getGameView().printFrames(gameController.getGame().getFrames(), actual);
     }
-
 
     @Test
-    public void Game5() {//the worst game
+    public void TheWorstGame() {//the worst game
         GameController gameController = new GameController();
-        //gameController.setIteration(0);
         gameController.wurfelnAccept(0);
         gameController.wurfelnAccept(0);
-        System.out.printf(
-                "Score Game 5 Turn %d :%d%n",
-                gameController.getIteration(),
+        logger.info(
+                "Score of the worst game Turn {} {}",
+                gameController.getGame().getIteration(),
                 gameController.calculateScore()
         );
         int actual = gameController.calculateScore();
         int expected = 0;
         assertEquals(expected, actual);
 
-        //gameController.setIteration(1);
         gameController.wurfelnAccept(0);
         gameController.wurfelnAccept(0);
-        System.out.printf(
-                "Score Game 5 Turn %d :%d%n",
-                gameController.getIteration(),
+        logger.info(
+                "Score of the worst game Turn {} {}",
+                gameController.getGame().getIteration(),
                 gameController.calculateScore()
         );
         actual = gameController.calculateScore();
         expected = 0;
         assertEquals(expected, actual);
 
-        //gameController.setIteration(2);
         gameController.wurfelnAccept(0);
         gameController.wurfelnAccept(0);
-        System.out.printf(
-                "Score Game 5 Turn %d :%d%n",
-                gameController.getIteration(),
+        logger.info(
+                "Score of the worst game Turn {} {}",
+                gameController.getGame().getIteration(),
                 gameController.calculateScore()
         );
         actual = gameController.calculateScore();
         expected = 0;
         assertEquals(expected, actual);
 
-        //gameController.setIteration(3);
         gameController.wurfelnAccept(0);
         gameController.wurfelnAccept(0);
-        System.out.printf(
-                "Score Game 5 Turn %d :%d%n",
-                gameController.getIteration(),
+        logger.info(
+                "Score of the worst game Turn {} {}",
+                gameController.getGame().getIteration(),
                 gameController.calculateScore()
         );
         actual = gameController.calculateScore();
         expected = 0;
         assertEquals(expected, actual);
 
-        //gameController.setIteration(4);
         gameController.wurfelnAccept(0);
         gameController.wurfelnAccept(0);
-        System.out.printf(
-                "Score Game 5 Turn %d :%d%n",
-                gameController.getIteration(),
+        logger.info(
+                "Score of the worst game Turn {} {}",
+                gameController.getGame().getIteration(),
                 gameController.calculateScore()
         );
         actual = gameController.calculateScore();
         expected = 0;
         assertEquals(expected, actual);
 
-        //gameController.setIteration(5);
         gameController.wurfelnAccept(0);
         gameController.wurfelnAccept(0);
-        System.out.printf(
-                "Score Game 5 Turn %d :%d%n",
-                gameController.getIteration(),
+        logger.info(
+                "Score of the worst game Turn {} {}",
+                gameController.getGame().getIteration(),
                 gameController.calculateScore()
         );
         actual = gameController.calculateScore();
         expected = 0;
         assertEquals(expected, actual);
 
-        //gameController.setIteration(6);
         gameController.wurfelnAccept(0);
         gameController.wurfelnAccept(0);
-        System.out.printf(
-                "Score Game 5 Turn %d :%d%n",
-                gameController.getIteration(),
+        logger.info(
+                "Score of the worst game Turn {} {}",
+                gameController.getGame().getIteration(),
                 gameController.calculateScore()
         );
         actual = gameController.calculateScore();
         expected = 0;
         assertEquals(expected, actual);
 
-        //gameController.setIteration(7);
         gameController.wurfelnAccept(0);
         gameController.wurfelnAccept(0);
-        System.out.printf(
-                "Score Game 5 Turn %d :%d%n",
-                gameController.getIteration(),
+        logger.info(
+                "Score of the worst game Turn {} {}",
+                gameController.getGame().getIteration(),
                 gameController.calculateScore()
         );
         actual = gameController.calculateScore();
         expected = 0;
         assertEquals(expected, actual);
 
-        //gameController.setIteration(8);
         gameController.wurfelnAccept(0);
         gameController.wurfelnAccept(0);
-        System.out.printf(
-                "Score Game 5 Turn %d :%d%n",
-                gameController.getIteration(),
+        logger.info(
+                "Score of the worst game Turn {} {}",
+                gameController.getGame().getIteration(),
                 gameController.calculateScore()
         );
         actual = gameController.calculateScore();
         expected = 0;
         assertEquals(expected, actual);
 
-        //gameController.setIteration(9);
         gameController.wurfelnAccept(0);
         gameController.wurfelnAccept(0);
-        System.out.printf(
-                "Score Game 5 Turn %d :%d%n",
-                gameController.getIteration(),
+        logger.info(
+                "Score of the worst game Turn {} {}",
+                gameController.getGame().getIteration(),
                 gameController.calculateScore()
         );
         actual = gameController.calculateScore();
         expected = 0;
         assertEquals(expected, actual);
 
-        gameController.gameView.printFrames(gameController.game.getFrames(),actual);
+        gameController.getGameView().printFrames(gameController.getGame().getFrames(), actual);
     }
 
-    @Test//the worst game
-    public void Game6() {//das perfekte Spiel
+    @Test
+    public void ForLastFrameStrike() {
         GameController gameController = new GameController();
-        //gameController.setIteration(0);
         gameController.wurfelnAccept(0);
         gameController.wurfelnAccept(0);
-        System.out.printf(
-                "Score Game 6 Turn %d :%d%n",
-                gameController.getIteration(),
+        logger.info(
+                "Score of ForLastFrameStrikeGame Turn {} {}",
+                gameController.getGame().getIteration(),
                 gameController.calculateScore()
         );
         int actual = gameController.calculateScore();
         int expected = 0;
         assertEquals(expected, actual);
 
-        //gameController.setIteration(1);
         gameController.wurfelnAccept(0);
         gameController.wurfelnAccept(0);
-        System.out.printf(
-                "Score Game 6 Turn %d :%d%n",
-                gameController.getIteration(),
+        logger.info(
+                "Score of ForLastFrameStrikeGame Turn {} {}",
+                gameController.getGame().getIteration(),
                 gameController.calculateScore()
         );
         actual = gameController.calculateScore();
         expected = 0;
         assertEquals(expected, actual);
 
-        //gameController.setIteration(2);
         gameController.wurfelnAccept(0);
         gameController.wurfelnAccept(0);
-        System.out.printf(
-                "Score Game 6 Turn %d :%d%n",
-                gameController.getIteration(),
+        logger.info(
+                "Score of ForLastFrameStrikeGame Turn {} {}",
+                gameController.getGame().getIteration(),
                 gameController.calculateScore()
         );
         actual = gameController.calculateScore();
         expected = 0;
         assertEquals(expected, actual);
 
-        //gameController.setIteration(3);
         gameController.wurfelnAccept(0);
         gameController.wurfelnAccept(0);
-        System.out.printf(
-                "Score Game 6 Turn %d :%d%n",
-                gameController.getIteration(),
+        logger.info(
+                "Score of ForLastFrameStrikeGame Turn {} {}",
+                gameController.getGame().getIteration(),
                 gameController.calculateScore()
         );
         actual = gameController.calculateScore();
         expected = 0;
         assertEquals(expected, actual);
 
-        //gameController.setIteration(4);
         gameController.wurfelnAccept(0);
         gameController.wurfelnAccept(0);
-        System.out.printf(
-                "Score Game 6 Turn %d :%d%n",
-                gameController.getIteration(),
+        logger.info(
+                "Score of ForLastFrameStrikeGame Turn {} {}",
+                gameController.getGame().getIteration(),
                 gameController.calculateScore()
         );
         actual = gameController.calculateScore();
         expected = 0;
         assertEquals(expected, actual);
 
-        //gameController.setIteration(5);
         gameController.wurfelnAccept(0);
         gameController.wurfelnAccept(0);
-        System.out.printf(
-                "Score Game 6 Turn %d :%d%n",
-                gameController.getIteration(),
+        logger.info(
+                "Score of ForLastFrameStrikeGame Turn {} {}",
+                gameController.getGame().getIteration(),
                 gameController.calculateScore()
         );
         actual = gameController.calculateScore();
         expected = 0;
         assertEquals(expected, actual);
 
-        //gameController.setIteration(6);
         gameController.wurfelnAccept(0);
         gameController.wurfelnAccept(0);
-        System.out.printf(
-                "Score Game 6 Turn %d :%d%n",
-                gameController.getIteration(),
+        logger.info(
+                "Score of ForLastFrameStrikeGame Turn {} {}",
+                gameController.getGame().getIteration(),
                 gameController.calculateScore()
         );
         actual = gameController.calculateScore();
         expected = 0;
         assertEquals(expected, actual);
 
-        //gameController.setIteration(7);
         gameController.wurfelnAccept(0);
         gameController.wurfelnAccept(0);
-        System.out.printf(
-                "Score Game 6 Turn %d :%d%n",
-                gameController.getIteration(),
+        logger.info(
+                "Score of ForLastFrameStrikeGame Turn {} {}",
+                gameController.getGame().getIteration(),
                 gameController.calculateScore()
         );
         actual = gameController.calculateScore();
         expected = 0;
         assertEquals(expected, actual);
 
-        //gameController.setIteration(8);
         gameController.wurfelnAccept(0);
         gameController.wurfelnAccept(10);
-        System.out.printf(
-                "Score Game 6 Turn %d :%d%n",
-                gameController.getIteration(),
+        logger.info(
+                "Score of ForLastFrameStrikeGame Turn {} {}",
+                gameController.getGame().getIteration(),
                 gameController.calculateScore()
         );
         actual = gameController.calculateScore();
         expected = 10;
         assertEquals(expected, actual);
 
-        //gameController.setIteration(9);
         gameController.wurfelnAccept(2);
         gameController.wurfelnAccept(7);
-        //gameController.wurfelnAccept(5);
-        System.out.printf(
-                "Score Game 6 Turn %d :%d%n",
-                gameController.getIteration(),
+        logger.info(
+                "Score of ForLastFrameStrikeGame Turn {} {}",
+                gameController.getGame().getIteration(),
                 gameController.calculateScore()
         );
         actual = gameController.calculateScore();
         expected = 21;
         assertEquals(expected, actual);
 
-        gameController.gameView.printFrames(gameController.game.getFrames(),actual);
     }
 
 }
