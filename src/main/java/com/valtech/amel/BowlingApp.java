@@ -1,8 +1,9 @@
-package com.valtech.amel.controller;
+package com.valtech.amel;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import com.valtech.amel.controller.GameController;
 
 public class BowlingApp {
 
