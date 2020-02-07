@@ -6,7 +6,6 @@ import com.valtech.amel.view.GameView;
 
 public class GameController {
 
-
     private Game game = new Game();
     private GameView gameView = new GameView();
 
@@ -18,35 +17,29 @@ public class GameController {
         return gameView;
     }
 
-
-
     public Frame getFrame(int iteration) {
         return game.getFrames().get(iteration);
-
     }
 
     public void wurfelnAccept(int zahl) {
         if (game.getIteration() <= 9) {
-            if (game.getFrames().size() == game.getIteration() ) {
+            if (game.getFrames().size() == game.getIteration()) {
                 wuerfelnAcceptNewFrame(zahl);
             } else {
                 wuerfelnAcceptExistingFrame(zahl);
             }
-
         }
-
     }
 
     private void wuerfelnAcceptNewFrame(int zahl) {
-        Frame frame = new Frame(game.getIteration() );
+        Frame frame = new Frame(game.getIteration());
         frame.addThrow(zahl);
         game.getFrames().add(frame);
 
         if (frame.isComplete()) {
-            addBonus(game.getIteration() );
-            game.setIteration(game.getIteration()+1);
+            addBonus(game.getIteration());
+            game.setIteration(game.getIteration() + 1);
         }
-
     }
 
     private void wuerfelnAcceptExistingFrame(int zahl) {
@@ -55,9 +48,8 @@ public class GameController {
 
         if (currentFrame.isComplete()) {
             addBonus(game.getIteration());
-            game.setIteration(game.getIteration()+1);
+            game.setIteration(game.getIteration() + 1);
         }
-
     }
 
     public void addBonus(int iteration) {
@@ -112,13 +104,13 @@ public class GameController {
             prevFrame.addBonus(currentFrame.getThrow(1));
 
         }
-
     }
 
     public int calculateScore() {
         return calculateScoreWithFullScore(game.getIteration());
 
     }
+
 
     public int calculateScoreWithFullScore(int iteration) {
         int sum = 0;
@@ -127,5 +119,4 @@ public class GameController {
         }
         return sum;
     }
-
 }
