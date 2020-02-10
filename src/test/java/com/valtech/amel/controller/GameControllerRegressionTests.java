@@ -230,8 +230,6 @@ public class GameControllerRegressionTests {
         actual = gameController.calculateScore();
         expected = 127;
         assertEquals(expected, actual);
-
-        gameController.getGameView().printFrames(gameController.getGame().getFrames(), actual);
     }
 
     @Test
@@ -346,8 +344,6 @@ public class GameControllerRegressionTests {
         actual = gameController.calculateScore();
         expected = 86;
         assertEquals(expected, actual);
-
-        gameController.getGameView().printFrames(gameController.getGame().getFrames(), actual);
     }
 
     @Test
@@ -454,8 +450,6 @@ public class GameControllerRegressionTests {
         actual = gameController.calculateScore();
         expected = 300;
         assertEquals(expected, actual);
-
-        gameController.getGameView().printFrames(gameController.getGame().getFrames(), actual);
     }
 
     @Test
@@ -570,8 +564,6 @@ public class GameControllerRegressionTests {
         actual = gameController.calculateScore();
         expected = 0;
         assertEquals(expected, actual);
-
-        gameController.getGameView().printFrames(gameController.getGame().getFrames(), actual);
     }
 
     @Test
