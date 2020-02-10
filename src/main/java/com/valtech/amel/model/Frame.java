@@ -9,8 +9,6 @@ public class Frame {
     private int finalScore;
     private final List<Integer> throwList = new ArrayList<>(3);
 
-    //private int bonusCount;//eine alternative zu a
-
     public int getNumber() {
         return number;
     }

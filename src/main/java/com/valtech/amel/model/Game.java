@@ -5,7 +5,9 @@ import java.util.List;
 
 public class Game {
 
-    public int iteration = 0;
+    private int iteration = 0;
+    private List<Frame> frames = new ArrayList<>(10);
+    private String playerName;
 
     public int getIteration() {
         return iteration;
@@ -14,9 +16,6 @@ public class Game {
     public void setIteration(int iteration) {
         this.iteration = iteration;
     }
-
-    private List<Frame> frames = new ArrayList<>(10);
-    String playerName;
 
     public String getPlayerName() {
         return playerName;
