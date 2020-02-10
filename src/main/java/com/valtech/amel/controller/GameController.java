@@ -54,55 +54,32 @@ public class GameController {
 
     public void addBonus(int iteration) {
         Frame currentFrame = game.getFrames().get(iteration);
-
         if (iteration > 0) {
             Frame prevFrame = game.getFrames().get(iteration - 1);
-
-            if (iteration < 9) {
-
-                addBonusBeforeLastFrame(iteration, currentFrame, prevFrame);
-
-            } else if (iteration == 9) {
-                addBonusLastFrame(iteration, currentFrame, prevFrame);
-
-            }
-
+            addBonus(iteration, currentFrame, prevFrame);
         }
-
     }
 
-    private void addBonusBeforeLastFrame(int iteration, Frame currentFrame, Frame prevFrame) {
+    private void addBonus(int iteration, Frame currentFrame, Frame prevFrame) {
         if (iteration >= 2) {
             Frame prePrevFrame = game.getFrames().get(iteration - 2);
-
             if (prePrevFrame.isStrike() && prevFrame.isStrike()) {
                 prePrevFrame.addBonus(currentFrame.getThrow(0));
             }
-
         }
         if (prevFrame.isSpare()) {
             prevFrame.addBonus(currentFrame.getThrow(0));
         } else if ((prevFrame.isStrike())) {
             prevFrame.addBonus(currentFrame.getThrow(0));
-            if (!currentFrame.isStrike()) {
+            if (iteration < 9) {
+
+                if (!currentFrame.isStrike()) {
+                    prevFrame.addBonus(currentFrame.getThrow(1));
+                }
+            } else if (iteration == 9) {
                 prevFrame.addBonus(currentFrame.getThrow(1));
+
             }
-        }
-
-    }
-
-    private void addBonusLastFrame(int iteration, Frame currentFrame, Frame prevFrame) {
-        Frame prePrevFrame = game.getFrames().get(iteration - 2);
-        if (prePrevFrame.isStrike() && prevFrame.isStrike()) {
-            prePrevFrame.addBonus(currentFrame.getThrow(0));
-        }
-
-        if (prevFrame.isSpare()) {
-            prevFrame.addBonus(currentFrame.getThrow(0));
-        } else if ((prevFrame.isStrike())) {
-            prevFrame.addBonus(currentFrame.getThrow(0));
-            prevFrame.addBonus(currentFrame.getThrow(1));
-
         }
     }
 
@@ -110,7 +87,6 @@ public class GameController {
         return calculateScoreWithFullScore(game.getIteration());
 
     }
-
 
     public int calculateScoreWithFullScore(int iteration) {
         int sum = 0;
