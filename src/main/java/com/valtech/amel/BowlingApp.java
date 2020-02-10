@@ -105,9 +105,7 @@ public class BowlingApp {
         while (!valid) {
             throwResult = getValidNumber(
                     gameControllerPlayerGame.getGame().getPlayerName() + " enter your second throw : ", 0, 10);
-
             valid = ((throwResult + gameControllerPlayerGame.getFrame(iteration).getThrow(0)) <= 10);
-
         }
         return throwResult;
     }
