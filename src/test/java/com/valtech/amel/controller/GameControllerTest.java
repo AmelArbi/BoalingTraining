@@ -1,6 +1,7 @@
 package com.valtech.amel.controller;
 
 import java.util.stream.IntStream;
+import com.valtech.amel.model.Game;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +11,8 @@ import static org.junit.Assert.*;
 public class GameControllerTest {
 
     Logger logger = LoggerFactory.getLogger(GameControllerTest.class);
+    GameController gameController = new GameController();
+    Game game = new Game();
 
     @Test
     public void wuerfelAccept() {
@@ -17,166 +20,164 @@ public class GameControllerTest {
         logger.info("Begin Test von wuerfelAccept");
         GameController gameController = new GameController();
 
-        logger.debug("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(10);
+        logger.debug("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(10,game);
 
-        logger.debug("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(10);
+        logger.debug("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(10,game);
 
-        logger.debug("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(10);
+        logger.debug("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(10,game);
 
-        logger.debug("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(10);
+        logger.debug("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(10,game);
 
-        logger.debug("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(10);
+        logger.debug("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(10,game);
 
-        logger.debug("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(10);
+        logger.debug("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(10,game);
 
-        logger.debug("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(10);
+        logger.debug("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(10,game);
 
-        logger.debug("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(10);
+        logger.debug("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(10,game);
 
-        logger.debug("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(10);
+        logger.debug("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(10,game);
 
-        logger.debug("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(10);
+        logger.debug("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(10,game);
 
-        logger.debug("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(10);
+        logger.debug("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(10,game);
 
-        logger.debug("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(10);
+        logger.debug("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(10,game);
     }
 
     @Test
     public void addBonusRegularFal() {
         GameController gameController = new GameController();
 
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(1);
-        gameController.wurfelnAccept(1);
-        assertEquals(2, gameController.getFrame(0).getFinalScore());
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(1,game);
+        gameController.wurfelnAccept(1,game);
+        assertEquals(2, game.getFrames().get(0).getFinalScore());
 
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(1);
-        gameController.wurfelnAccept(1);
-        assertEquals(2, gameController.getFrame(1).getFinalScore());
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(1,game);
+        gameController.wurfelnAccept(1,game);
+        assertEquals(2, game.getFrames().get(1).getFinalScore());
 
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(1);
-        gameController.wurfelnAccept(1);
-        assertEquals(2, gameController.getFrame(1).getFinalScore());
-        assertEquals(2, gameController.getFrame(2).getFinalScore());
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(1,game);
+        gameController.wurfelnAccept(1,game);
+        assertEquals(2, game.getFrames().get(1).getFinalScore());
+        assertEquals(2, game.getFrames().get(2).getFinalScore());
 
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(1);
-        gameController.wurfelnAccept(1);
-        assertEquals(2, gameController.getFrame(1).getFinalScore());
-        assertEquals(2, gameController.getFrame(2).getFinalScore());
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(1,game);
+        gameController.wurfelnAccept(1,game);
+        assertEquals(2, game.getFrames().get(1).getFinalScore());
+        assertEquals(2, game.getFrames().get(2).getFinalScore());
 
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(1);
-        gameController.wurfelnAccept(1);
-        assertEquals(2, gameController.getFrame(2).getFinalScore());
-        assertEquals(2, gameController.getFrame(3).getFinalScore());
-        assertEquals(2, gameController.getFrame(4).getFinalScore());
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(1,game);
+        gameController.wurfelnAccept(1,game);
+        assertEquals(2, game.getFrames().get(2).getFinalScore());
+        assertEquals(2, game.getFrames().get(3).getFinalScore());
+        assertEquals(2, game.getFrames().get(4).getFinalScore());
 
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(1);
-        gameController.wurfelnAccept(1);
-        assertEquals(2, gameController.getFrame(3).getFinalScore());
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(1,game);
+        gameController.wurfelnAccept(1,game);
+        assertEquals(2, game.getFrames().get(3).getFinalScore());
 
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(1);
-        gameController.wurfelnAccept(1);
-        assertEquals(2, gameController.getFrame(5).getFinalScore());
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(1,game);
+        gameController.wurfelnAccept(1,game);
+        assertEquals(2, game.getFrames().get(5).getFinalScore());
 
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(1);
-        gameController.wurfelnAccept(1);
-        assertEquals(2, gameController.getFrame(7).getFinalScore());
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(1,game);
+        gameController.wurfelnAccept(1,game);
+        assertEquals(2, game.getFrames().get(7).getFinalScore());
 
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(1);
-        gameController.wurfelnAccept(1);
-        assertEquals(2, gameController.getFrame(6).getFinalScore());
-        assertEquals(2, gameController.getFrame(7).getFinalScore());
-        assertEquals(2, gameController.getFrame(8).getFinalScore());
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(1,game);
+        gameController.wurfelnAccept(1,game);
+        assertEquals(2, game.getFrames().get(6).getFinalScore());
+        assertEquals(2, game.getFrames().get(7).getFinalScore());
+        assertEquals(2, game.getFrames().get(8).getFinalScore());
 
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(1);
-        gameController.wurfelnAccept(1);
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(1,game);
+        gameController.wurfelnAccept(1,game);
 
-        assertEquals(2, gameController.getFrame(7).getFinalScore());
-        assertEquals(2, gameController.getFrame(8).getFinalScore());
-        assertEquals(2, gameController.getFrame(9).getFinalScore());
+        assertEquals(2, game.getFrames().get(7).getFinalScore());
+        assertEquals(2, game.getFrames().get(8).getFinalScore());
+        assertEquals(2, game.getFrames().get(9).getFinalScore());
 
     }
 
     @Test
     public void addBonusLastFrameStrike() {
-        GameController gameController = new GameController();
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(10,game);//0
+        assertEquals(10, game.getFrames().get(0).getFinalScore());
 
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(10);//0
-        assertEquals(10, gameController.getFrame(0).getFinalScore());
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(10,game);
+        assertEquals(10, game.getFrames().get(1).getFinalScore());
 
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(10);
-        assertEquals(10, gameController.getFrame(1).getFinalScore());
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(10,game);
+        assertEquals(20, game.getFrames().get(1).getFinalScore());
+        assertEquals(10, game.getFrames().get(2).getFinalScore());
 
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(10);
-        assertEquals(20, gameController.getFrame(1).getFinalScore());
-        assertEquals(10, gameController.getFrame(2).getFinalScore());
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(10,game);
+        assertEquals(30, game.getFrames().get(1).getFinalScore());
+        assertEquals(20, game.getFrames().get(2).getFinalScore());
 
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(10);
-        assertEquals(30, gameController.getFrame(1).getFinalScore());
-        assertEquals(20, gameController.getFrame(2).getFinalScore());
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(10,game);
+        assertEquals(30, game.getFrames().get(2).getFinalScore());
+        assertEquals(20, game.getFrames().get(3).getFinalScore());
+        assertEquals(10, game.getFrames().get(4).getFinalScore());
 
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(10);
-        assertEquals(30, gameController.getFrame(2).getFinalScore());
-        assertEquals(20, gameController.getFrame(3).getFinalScore());
-        assertEquals(10, gameController.getFrame(4).getFinalScore());
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(10,game);
+        assertEquals(30, game.getFrames().get(3).getFinalScore());
 
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(10);
-        assertEquals(30, gameController.getFrame(3).getFinalScore());
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(10,game);
+        assertEquals(20, game.getFrames().get(5).getFinalScore());
 
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(10);
-        assertEquals(20, gameController.getFrame(5).getFinalScore());
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(2,game);
+        gameController.wurfelnAccept(2,game);
+        assertEquals(14, game.getFrames().get(6).getFinalScore());
+        assertEquals(4, game.getFrames().get(7).getFinalScore());
 
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(2);
-        gameController.wurfelnAccept(2);
-        assertEquals(14, gameController.getFrame(6).getFinalScore());
-        assertEquals(4, gameController.getFrame(7).getFinalScore());
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(2,game);
+        gameController.wurfelnAccept(2,game);
+        assertEquals(14, game.getFrames().get(6).getFinalScore());
+        assertEquals(4, game.getFrames().get(7).getFinalScore());
+        assertEquals(4, game.getFrames().get(8).getFinalScore());
 
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(2);
-        gameController.wurfelnAccept(2);
-        assertEquals(14, gameController.getFrame(6).getFinalScore());
-        assertEquals(4, gameController.getFrame(7).getFinalScore());
-        assertEquals(4, gameController.getFrame(8).getFinalScore());
-
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(10);
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(10);
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(10);
-        assertEquals(4, gameController.getFrame(7).getFinalScore());
-        assertEquals(4, gameController.getFrame(8).getFinalScore());
-        assertEquals(30, gameController.getFrame(9).getFinalScore());
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(10,game);
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(10,game);
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(10,game);
+        assertEquals(4, game.getFrames().get(7).getFinalScore());
+        assertEquals(4, game.getFrames().get(8).getFinalScore());
+        assertEquals(30, game.getFrames().get(9).getFinalScore());
 
     }
 
@@ -184,55 +185,55 @@ public class GameControllerTest {
     public void addBonusPrePrevFrameStrikePrevFrameStrike() {
         GameController gameController = new GameController();
 
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(10);
-        assertEquals(10, gameController.getFrame(0).getFinalScore());
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(10,game);
+        assertEquals(10, game.getFrames().get(0).getFinalScore());
 
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(10);
-        assertEquals(10, gameController.getFrame(1).getFinalScore());
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(10,game);
+        assertEquals(10, game.getFrames().get(1).getFinalScore());
 
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(10);
-        assertEquals(20, gameController.getFrame(1).getFinalScore());
-        assertEquals(10, gameController.getFrame(2).getFinalScore());
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(10,game);
+        assertEquals(20, game.getFrames().get(1).getFinalScore());
+        assertEquals(10, game.getFrames().get(2).getFinalScore());
 
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(10);
-        assertEquals(30, gameController.getFrame(1).getFinalScore());
-        assertEquals(20, gameController.getFrame(2).getFinalScore());
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(10,game);
+        assertEquals(30, game.getFrames().get(1).getFinalScore());
+        assertEquals(20, game.getFrames().get(2).getFinalScore());
 
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(10);
-        assertEquals(30, gameController.getFrame(2).getFinalScore());
-        assertEquals(20, gameController.getFrame(3).getFinalScore());
-        assertEquals(10, gameController.getFrame(4).getFinalScore());
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(10,game);
+        assertEquals(30, game.getFrames().get(2).getFinalScore());
+        assertEquals(20, game.getFrames().get(3).getFinalScore());
+        assertEquals(10, game.getFrames().get(4).getFinalScore());
 
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(10);
-        assertEquals(30, gameController.getFrame(3).getFinalScore());
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(10,game);
+        assertEquals(30, game.getFrames().get(3).getFinalScore());
 
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(10);
-        assertEquals(20, gameController.getFrame(5).getFinalScore());
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(10,game);
+        assertEquals(20, game.getFrames().get(5).getFinalScore());
 
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(10);
-        assertEquals(10, gameController.getFrame(7).getFinalScore());
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(10,game);
+        assertEquals(10, game.getFrames().get(7).getFinalScore());
 
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(10);
-        assertEquals(30, gameController.getFrame(6).getFinalScore());
-        assertEquals(20, gameController.getFrame(7).getFinalScore());
-        assertEquals(10, gameController.getFrame(8).getFinalScore());
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(10,game);
+        assertEquals(30, game.getFrames().get(6).getFinalScore());
+        assertEquals(20, game.getFrames().get(7).getFinalScore());
+        assertEquals(10, game.getFrames().get(8).getFinalScore());
 
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(3);
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(5);
-        assertEquals(23, gameController.getFrame(7).getFinalScore());
-        assertEquals(18, gameController.getFrame(8).getFinalScore());
-        assertEquals(8, gameController.getFrame(9).getFinalScore());
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(3,game);
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(5,game);
+        assertEquals(23, game.getFrames().get(7).getFinalScore());
+        assertEquals(18, game.getFrames().get(8).getFinalScore());
+        assertEquals(8, game.getFrames().get(9).getFinalScore());
 
     }
 
@@ -240,55 +241,55 @@ public class GameControllerTest {
     public void addBonusLastFrameSpare() {
         GameController gameController = new GameController();
 
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(10);//0
-        assertEquals(10, gameController.getFrame(0).getFinalScore());
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(10,game);//0
+        assertEquals(10, game.getFrames().get(0).getFinalScore());
 
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(10);
-        assertEquals(10, gameController.getFrame(1).getFinalScore());
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(10,game);
+        assertEquals(10, game.getFrames().get(1).getFinalScore());
 
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(10);
-        assertEquals(20, gameController.getFrame(1).getFinalScore());
-        assertEquals(10, gameController.getFrame(2).getFinalScore());
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(10,game);
+        assertEquals(20, game.getFrames().get(1).getFinalScore());
+        assertEquals(10, game.getFrames().get(2).getFinalScore());
 
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(10);
-        assertEquals(30, gameController.getFrame(1).getFinalScore());
-        assertEquals(20, gameController.getFrame(2).getFinalScore());
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(10,game);
+        assertEquals(30, game.getFrames().get(1).getFinalScore());
+        assertEquals(20, game.getFrames().get(2).getFinalScore());
 
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(10);
-        assertEquals(30, gameController.getFrame(2).getFinalScore());
-        assertEquals(20, gameController.getFrame(3).getFinalScore());
-        assertEquals(10, gameController.getFrame(4).getFinalScore());
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(10,game);
+        assertEquals(30, game.getFrames().get(2).getFinalScore());
+        assertEquals(20, game.getFrames().get(3).getFinalScore());
+        assertEquals(10, game.getFrames().get(4).getFinalScore());
 
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(10);
-        assertEquals(30, gameController.getFrame(3).getFinalScore());
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(10,game);
+        assertEquals(30, game.getFrames().get(3).getFinalScore());
 
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(10);
-        assertEquals(20, gameController.getFrame(5).getFinalScore());
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(10,game);
+        assertEquals(20, game.getFrames().get(5).getFinalScore());
 
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(10);
-        assertEquals(10, gameController.getFrame(7).getFinalScore());
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(10,game);
+        assertEquals(10, game.getFrames().get(7).getFinalScore());
 
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(10);
-        assertEquals(30, gameController.getFrame(6).getFinalScore());
-        assertEquals(20, gameController.getFrame(7).getFinalScore());
-        assertEquals(10, gameController.getFrame(8).getFinalScore());
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(10,game);
+        assertEquals(30, game.getFrames().get(6).getFinalScore());
+        assertEquals(20, game.getFrames().get(7).getFinalScore());
+        assertEquals(10, game.getFrames().get(8).getFinalScore());
 
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(3);
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(5);
-        assertEquals(23, gameController.getFrame(7).getFinalScore());
-        assertEquals(18, gameController.getFrame(8).getFinalScore());
-        assertEquals(8, gameController.getFrame(9).getFinalScore());
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(3,game);
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(5,game);
+        assertEquals(23, game.getFrames().get(7).getFinalScore());
+        assertEquals(18, game.getFrames().get(8).getFinalScore());
+        assertEquals(8, game.getFrames().get(9).getFinalScore());
 
     }
 
@@ -296,57 +297,57 @@ public class GameControllerTest {
     public void addBonusLastFrameRegular() {
         GameController gameController = new GameController();
 
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(10);//0
-        assertEquals(10, gameController.getFrame(0).getFinalScore());
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(10,game);//0
+        assertEquals(10, game.getFrames().get(0).getFinalScore());
 
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(10);
-        assertEquals(10, gameController.getFrame(1).getFinalScore());
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(10,game);
+        assertEquals(10, game.getFrames().get(1).getFinalScore());
 
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(10);
-        assertEquals(20, gameController.getFrame(1).getFinalScore());
-        assertEquals(10, gameController.getFrame(2).getFinalScore());
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(10,game);
+        assertEquals(20, game.getFrames().get(1).getFinalScore());
+        assertEquals(10, game.getFrames().get(2).getFinalScore());
 
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(10);
-        assertEquals(30, gameController.getFrame(1).getFinalScore());
-        assertEquals(20, gameController.getFrame(2).getFinalScore());
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(10,game);
+        assertEquals(30, game.getFrames().get(1).getFinalScore());
+        assertEquals(20, game.getFrames().get(2).getFinalScore());
 
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(10);
-        assertEquals(30, gameController.getFrame(2).getFinalScore());
-        assertEquals(20, gameController.getFrame(3).getFinalScore());
-        assertEquals(10, gameController.getFrame(4).getFinalScore());
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(10,game);
+        assertEquals(30, game.getFrames().get(2).getFinalScore());
+        assertEquals(20, game.getFrames().get(3).getFinalScore());
+        assertEquals(10, game.getFrames().get(4).getFinalScore());
 
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(10);
-        assertEquals(30, gameController.getFrame(3).getFinalScore());
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(10,game);
+        assertEquals(30, game.getFrames().get(3).getFinalScore());
 
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(10);
-        assertEquals(20, gameController.getFrame(5).getFinalScore());
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(10,game);
+        assertEquals(20, game.getFrames().get(5).getFinalScore());
 
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(10);
-        assertEquals(10, gameController.getFrame(7).getFinalScore());
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(10,game);
+        assertEquals(10, game.getFrames().get(7).getFinalScore());
 
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(10);
-        assertEquals(30, gameController.getFrame(6).getFinalScore());
-        assertEquals(20, gameController.getFrame(7).getFinalScore());
-        assertEquals(10, gameController.getFrame(8).getFinalScore());
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(10,game);
+        assertEquals(30, game.getFrames().get(6).getFinalScore());
+        assertEquals(20, game.getFrames().get(7).getFinalScore());
+        assertEquals(10, game.getFrames().get(8).getFinalScore());
 
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(7);
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(3);
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(6);
-        assertEquals(27, gameController.getFrame(7).getFinalScore());
-        assertEquals(20, gameController.getFrame(8).getFinalScore());
-        assertEquals(16, gameController.getFrame(9).getFinalScore());
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(7,game);
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(3,game);
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(6,game);
+        assertEquals(27, game.getFrames().get(7).getFinalScore());
+        assertEquals(20, game.getFrames().get(8).getFinalScore());
+        assertEquals(16, game.getFrames().get(9).getFinalScore());
 
     }
 
@@ -354,160 +355,160 @@ public class GameControllerTest {
     public void addBonusPrePrevFramePrevFrameLastFrameStrike() {
         GameController gameController = new GameController();
 
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(1);//0
-        gameController.wurfelnAccept(2);
-        assertEquals(3, gameController.getFrame(0).getFinalScore());
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(1,game);//0
+        gameController.wurfelnAccept(2,game);
+        assertEquals(3, game.getFrames().get(0).getFinalScore());
 
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(10);
-        assertEquals(10, gameController.getFrame(1).getFinalScore());
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(10,game);
+        assertEquals(10, game.getFrames().get(1).getFinalScore());
 
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(10);
-        assertEquals(20, gameController.getFrame(1).getFinalScore());
-        assertEquals(10, gameController.getFrame(2).getFinalScore());
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(10,game);
+        assertEquals(20, game.getFrames().get(1).getFinalScore());
+        assertEquals(10, game.getFrames().get(2).getFinalScore());
 
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(10);
-        assertEquals(30, gameController.getFrame(1).getFinalScore());
-        assertEquals(20, gameController.getFrame(2).getFinalScore());
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(10,game);
+        assertEquals(30, game.getFrames().get(1).getFinalScore());
+        assertEquals(20, game.getFrames().get(2).getFinalScore());
 
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(10);
-        assertEquals(30, gameController.getFrame(2).getFinalScore());
-        assertEquals(20, gameController.getFrame(3).getFinalScore());
-        assertEquals(10, gameController.getFrame(4).getFinalScore());
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(10,game);
+        assertEquals(30, game.getFrames().get(2).getFinalScore());
+        assertEquals(20, game.getFrames().get(3).getFinalScore());
+        assertEquals(10, game.getFrames().get(4).getFinalScore());
 
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(10);
-        assertEquals(30, gameController.getFrame(3).getFinalScore());
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(10,game);
+        assertEquals(30, game.getFrames().get(3).getFinalScore());
 
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(10);
-        assertEquals(20, gameController.getFrame(5).getFinalScore());
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(10,game);
+        assertEquals(20, game.getFrames().get(5).getFinalScore());
 
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(10);
-        assertEquals(10, gameController.getFrame(7).getFinalScore());
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(10,game);
+        assertEquals(10, game.getFrames().get(7).getFinalScore());
 
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(10);
-        assertEquals(30, gameController.getFrame(6).getFinalScore());
-        assertEquals(20, gameController.getFrame(7).getFinalScore());
-        assertEquals(10, gameController.getFrame(8).getFinalScore());
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(10,game);
+        assertEquals(30, game.getFrames().get(6).getFinalScore());
+        assertEquals(20, game.getFrames().get(7).getFinalScore());
+        assertEquals(10, game.getFrames().get(8).getFinalScore());
 
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(3);
-        logger.info("Iteration {}", gameController.getGame().getIteration());
-        gameController.wurfelnAccept(2);
-        assertEquals(23, gameController.getFrame(7).getFinalScore());
-        assertEquals(15, gameController.getFrame(8).getFinalScore());
-        assertEquals(5, gameController.getFrame(9).getFinalScore());
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(3,game);
+        logger.info("Iteration {}", game.getIteration());
+        gameController.wurfelnAccept(2,game);
+        assertEquals(23, game.getFrames().get(7).getFinalScore());
+        assertEquals(15, game.getFrames().get(8).getFinalScore());
+        assertEquals(5, game.getFrames().get(9).getFinalScore());
     }
 
     @Test
-    public void lastFrameSpareCalculateScore() {
+    public void lastFrameSparecalculateScore() {
         GameController gameController = new GameController();
-        IntStream.range(0, 18).forEach(i -> gameController.wurfelnAccept(0));
-        gameController.wurfelnAccept(5);
-        gameController.wurfelnAccept(5);
-        gameController.wurfelnAccept(3);
-        assertEquals(13, gameController.calculateScore());
-
-    }
-
-    @Test
-    public void lastFrameStrikeCalculateScore() {
-        GameController gameController = new GameController();
-        IntStream.range(0, 18).forEach(i -> gameController.wurfelnAccept(0));
-        gameController.wurfelnAccept(10);
-        gameController.wurfelnAccept(5);
-        gameController.wurfelnAccept(3);
-        assertEquals(18, gameController.calculateScore());
+        IntStream.range(0, 18).forEach(i -> gameController.wurfelnAccept(0,game));
+        gameController.wurfelnAccept(5,game);
+        gameController.wurfelnAccept(5,game);
+        gameController.wurfelnAccept(3,game);
+        assertEquals(13, gameController.calculateScore(game,game.getIteration()));
 
     }
 
     @Test
-    public void lastFrameRegularCalculateScore() {
+    public void lastFrameStrikecalculateScore() {
         GameController gameController = new GameController();
-        IntStream.range(0, 18).forEach(i -> gameController.wurfelnAccept(0));
-        gameController.wurfelnAccept(3);
-        gameController.wurfelnAccept(3);
-        assertEquals(6, gameController.calculateScore());
+        IntStream.range(0, 18).forEach(i -> gameController.wurfelnAccept(0,game));
+        gameController.wurfelnAccept(10,game);
+        gameController.wurfelnAccept(5,game);
+        gameController.wurfelnAccept(3,game);
+        assertEquals(18, gameController.calculateScore(game,game.getIteration()));
 
     }
 
     @Test
-    public void firstFrameRegularCalculateScore() {
+    public void lastFrameRegularcalculateScore() {
         GameController gameController = new GameController();
-        gameController.wurfelnAccept(3);
-        gameController.wurfelnAccept(2);
-        assertEquals(5, gameController.calculateScore());
+        IntStream.range(0, 18).forEach(i -> gameController.wurfelnAccept(0,game));
+        gameController.wurfelnAccept(3,game);
+        gameController.wurfelnAccept(3,game);
+        assertEquals(6, gameController.calculateScore(game,game.getIteration()));
 
     }
 
     @Test
-    public void firstFrameSpareCalculateScore() {
+    public void firstFrameRegularcalculateScore() {
         GameController gameController = new GameController();
-        gameController.wurfelnAccept(5);
-        gameController.wurfelnAccept(5);
-        assertEquals(10, gameController.calculateScore());
+        gameController.wurfelnAccept(3,game);
+        gameController.wurfelnAccept(2,game);
+        assertEquals(5, gameController.calculateScore(game,game.getIteration()));
 
     }
 
     @Test
-    public void firstFrameStrikeCalculateScore() {
+    public void firstFrameSparecalculateScore() {
         GameController gameController = new GameController();
-        gameController.wurfelnAccept(10);
-        assertEquals(10, gameController.calculateScore());
+        gameController.wurfelnAccept(5,game);
+        gameController.wurfelnAccept(5,game);
+        assertEquals(10, gameController.calculateScore(game,game.getIteration()));
+
+    }
+
+    @Test
+    public void firstFrameStrikecalculateScore() {
+        GameController gameController = new GameController();
+        gameController.wurfelnAccept(10,game);
+        assertEquals(10, gameController.calculateScore(game,game.getIteration()));
 
     }
 
     @Test
     public void twoStrikes() {
         GameController gameController = new GameController();
-        gameController.wurfelnAccept(10);
-        gameController.wurfelnAccept(10);
-        assertEquals(30, gameController.calculateScore());
+        gameController.wurfelnAccept(10,game);
+        gameController.wurfelnAccept(10,game);
+        assertEquals(30, gameController.calculateScore(game,game.getIteration()));
 
     }
 
     @Test
     public void threeStrikes() {
         GameController gameController = new GameController();
-        gameController.wurfelnAccept(10);
-        gameController.wurfelnAccept(10);
-        gameController.wurfelnAccept(10);
-        assertEquals(60, gameController.calculateScore());
+        gameController.wurfelnAccept(10,game);
+        gameController.wurfelnAccept(10,game);
+        gameController.wurfelnAccept(10,game);
+        assertEquals(60, gameController.calculateScore(game,game.getIteration()));
     }
 
     @Test
     public void threeSpares() {
         GameController gameController = new GameController();
-        gameController.wurfelnAccept(5);
-        gameController.wurfelnAccept(5);
+        gameController.wurfelnAccept(5,game);
+        gameController.wurfelnAccept(5,game);
 
-        gameController.wurfelnAccept(5);
-        gameController.wurfelnAccept(5);
+        gameController.wurfelnAccept(5,game);
+        gameController.wurfelnAccept(5,game);
 
-        gameController.wurfelnAccept(5);
-        gameController.wurfelnAccept(5);
+        gameController.wurfelnAccept(5,game);
+        gameController.wurfelnAccept(5,game);
 
-        assertEquals(40, gameController.calculateScore());
+        assertEquals(40, gameController.calculateScore(game,game.getIteration()));
     }
 
     @Test
     public void singleStrikeBeforeLastFrame() {
         GameController gameController = new GameController();
-        IntStream.range(0, 16).forEach(i -> gameController.wurfelnAccept(0));
+        IntStream.range(0, 16).forEach(i -> gameController.wurfelnAccept(0,game));
 
-        gameController.wurfelnAccept(10);
+        gameController.wurfelnAccept(10,game);
 
-        gameController.wurfelnAccept(2);
-        gameController.wurfelnAccept(8);
-        gameController.wurfelnAccept(6);
-        assertEquals(36, gameController.calculateScore());
+        gameController.wurfelnAccept(2,game);
+        gameController.wurfelnAccept(8,game);
+        gameController.wurfelnAccept(6,game);
+        assertEquals(36, gameController.calculateScore(game,game.getIteration()));
     }
 
 }
