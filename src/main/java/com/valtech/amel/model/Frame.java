@@ -2,16 +2,15 @@ package com.valtech.amel.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
 
 public class Frame {
 
     private final int number;
     private int finalScore;
     private final List<Integer> throwList = new ArrayList<>(3);
-
-    public int getNumber() {
-        return number;
-    }
 
     public int getNumberOfThrows() {
         return throwList.size();
@@ -24,11 +23,6 @@ public class Frame {
 
     public int getThrow(int i) {
         return getThrowList().get(i);
-    }
-
-
-    public int getScore() {
-        return getThrowList().stream().mapToInt(i -> i).sum();
     }
 
     public int getFinalScore() {

@@ -3,7 +3,7 @@ package com.valtech.amel;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import com.valtech.amel.controller.GameController;
+import com.valtech.amel.service.GameService;
 import com.valtech.amel.model.Game;
 import com.valtech.amel.view.GameView;
 
@@ -11,8 +11,8 @@ public class BowlingApp {
 
     Scanner myScanner = new Scanner(System.in);
     List<Game> playersGames = new ArrayList<>(6);
-    GameController gameController = new GameController();
-    private GameView gameView = new GameView();
+    GameService gameService = new GameService();
+    private GameView gameView = new GameView(gameService);
 
     public static void main(String[] args) {
         BowlingApp bowlingApp = new BowlingApp();
@@ -61,7 +61,9 @@ public class BowlingApp {
     }
 
     private void playIteration(int numberOfPlayers, int iteration) {
-        System.out.println(" ------------------------Iteration " + (iteration + 1) + "----------------------------");
+        String ausgabe = "";
+        ausgabe = " ------------------------Iteration " + (iteration + 1) + "----------------------------";
+        System.out.println(ausgabe);
         for (int j = 0; j < numberOfPlayers; j++) {
             getTurn(playersGames.get(j), iteration);
             System.out.println();
@@ -87,7 +89,7 @@ public class BowlingApp {
 
     private void setSecondThrow(Game game, int iteration) {
         if (!game.getFrames().get(iteration).isStrike()) {
-            gameController.wurfelnAccept(
+            gameService.wurfelnAccept(
                     getSecondThrow(game, iteration, game.getFrames().get(iteration).getThrow(0)),
                     game
             );
@@ -96,7 +98,7 @@ public class BowlingApp {
     }
 
     private void setThrow(Game game, String s) {
-        gameController.wurfelnAccept(getValidNumber(game.getPlayerName() + s, 0, 10),
+        gameService.wurfelnAccept(getValidNumber(game.getPlayerName() + s, 0, 10),
                 game);
     }
 

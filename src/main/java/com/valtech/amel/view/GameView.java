@@ -1,13 +1,14 @@
 package com.valtech.amel.view;
 
-import java.util.List;
-import com.valtech.amel.controller.GameController;
-import com.valtech.amel.model.Frame;
+import java.sql.SQLOutput;
+import com.valtech.amel.service.GameService;
 import com.valtech.amel.model.Game;
+import org.springframework.stereotype.Component;
 
+@Component
 public class GameView {
 
-    GameController gameController= new GameController();
+    private final GameService gameService;
 
     String formatHeader = " %3d |";
     String formatThrow = "%2s|%2s|";
@@ -19,54 +20,65 @@ public class GameView {
     String formatLastSum = "   %3d  |";
     String formatLastLeerSum = "  %3s   |";
 
-    public void printFrames(List<Frame> frames, int score) {
-        String message = "";
-        for (int i = 0; i < frames.size(); i++) {
-            message = "Frame " + (i + 1) + " Throws = ";
-            for (int j = 0; j < frames.get(i).getNumberOfThrows(); j++) {
-                message = message + frames.get(i).getThrow(j) + ",  ";
-            }
-            message = message + "score=" + frames.get(i).getScore();
-            System.out.println(message);
-            System.out.println("between score : " + score);
-        }
+    public GameView(GameService gameService) {
+        this.gameService = gameService;
     }
 
     public void showFrames(Game game) {
+
         showHeader();
         showThrows(game);
         showScore(game);
     }
 
+    public String renderFrames(Game game) {
+        return renderSpielerName(game) + renderHeader() + renderThrows(game) + renderScore(game);
+    }
+
     private void showHeader() {
-        System.out.println();
-        System.out.println("----------------------------------------------------------------");
-        System.out.print("|");
+        System.out.print(renderHeader());
+    }
+
+    private String renderSpielerName(Game game){
+        return  game.getPlayerName() + "\n";
+
+    }
+
+    private String renderHeader() {
+        String ausgabe = "\n";
+        ausgabe += "----------------------------------------------------------------\n";
+        ausgabe += "|";
         for (int j = 0; j < 9; j++) {
-            System.out.format(formatHeader, j + 1);
+            ausgabe += String.format(formatHeader, j + 1);
         }
-        System.out.format(formatLastHeader, 10);
-        System.out.println();
-        System.out.println("----------------------------------------------------------------");
-        System.out.print("|");
+        ausgabe += String.format(formatLastHeader, 10);
+        ausgabe += "\n";
+        ausgabe += "----------------------------------------------------------------\n";
+        ausgabe += "|";
+        return ausgabe;
     }
 
     private void showThrows(Game game) {
+        System.out.print(renderThrows(game));
+    }
+
+    private String renderThrows(Game game) {
+        String ausgabe = "";
         for (int k = 0; k < game.getFrames().size(); k++) {
             if (game.getFrames().get(k).isLastFrame()) {
                 if (!game.getFrames().get(k).isStrike() && !game.getFrames()
                         .get(k)
                         .isSpare()) {
-                    System.out.format(formatLastThrow,
+                    ausgabe += String.format(formatLastThrow,
                             game.getFrames().get(k).getThrow(0),
                             game.getFrames().get(k).getThrow(1), "");
                 } else if (game.getFrames().get(k).isSpare()) {
                     if (!game.getFrames().get(k).isComplete()) {
-                        System.out.format(formatLastThrow,
+                        ausgabe += String.format(formatLastThrow,
                                 game.getFrames().get(k).getThrow(0),
                                 game.getFrames().get(k).getThrow(1), "");
                     } else {
-                        System.out.format(formatLastThrow,
+                        ausgabe += String.format(formatLastThrow,
                                 game.getFrames().get(k).getThrow(0),
                                 game.getFrames().get(k).getThrow(1),
                                 game.getFrames().get(k).getThrow(2));
@@ -74,53 +86,61 @@ public class GameView {
                     }
                 } else {
                     if (!game.getFrames().get(k).isComplete()) {
-                        System.out.format(formatLastThrow,
+                        ausgabe += String.format(formatLastThrow,
                                 game.getFrames().get(k).getThrow(0),
                                 "",
                                 "");
                     } else {
-                        System.out.format(formatLastThrow,
+                        ausgabe += String.format(formatLastThrow,
                                 game.getFrames().get(k).getThrow(0),
                                 game.getFrames().get(k).getThrow(1),
                                 game.getFrames().get(k).getThrow(2));
                     }
                 }
             } else if (!game.getFrames().get(k).isStrike()) {
-                System.out.format(formatThrow,
+                ausgabe += String.format(formatThrow,
                         game.getFrames().get(k).getThrow(0),
                         game.getFrames().get(k).getThrow(1));
             } else {
-                System.out.format(formatThrow,
+                ausgabe += String.format(formatThrow,
                         game.getFrames().get(k).getThrow(0), "");
             }
         }
         for (int l = game.getFrames().size(); l < 9; l++) {
-            System.out.format(formatThrow, "", "");
+            ausgabe += String.format(formatThrow, "", "");
         }
-        if (game.getFrames().size() != 10)
-        {System.out.format(formatLastThrow, "", "", "");}
-        System.out.println();
-        System.out.println("----------------------------------------------------------------");
-        System.out.print("|");
+        if (game.getFrames().size() != 10) {
+            ausgabe += String.format(formatLastThrow, "", "", "");
+        }
+        ausgabe += "\n";
+        ausgabe += "----------------------------------------------------------------\n";
+        ausgabe += "|";
+        return ausgabe;
     }
 
     private void showScore(Game game) {
+        System.out.print(renderScore(game));
+    }
+
+    private String renderScore(Game game) {
+        String ausgabe = "";
         for (int l = 0; l < game.getFrames().size(); l++) {
 
             if (!game.getFrames().get(l).isLastFrame())
-                System.out.format(formatSum, gameController.calculateScore(game,l + 1));
+                ausgabe += String.format(formatSum, gameService.calculateScore(game, l + 1));
             else
-                System.out.format(formatLastSum, gameController.calculateScore(game, l + 1));
+                ausgabe += String.format(formatLastSum, gameService.calculateScore(game, l + 1));
         }
         for (int l = game.getFrames().size(); l < 9; l++) {
-            System.out.format(formatLeerSum, "");
+            ausgabe += String.format(formatLeerSum, "");
         }
         if (game.getFrames().size() != 10) {
-            System.out.format(formatLastLeerSum, "", "", "");
+            ausgabe += String.format(formatLastLeerSum, "", "", "");
         }
-        System.out.println();
-        System.out.println("----------------------------------------------------------------");
-        System.out.println();
+        ausgabe += "\n";
+        ausgabe += "----------------------------------------------------------------";
+        ausgabe += "\n";
+        return ausgabe;
     }
 
 }

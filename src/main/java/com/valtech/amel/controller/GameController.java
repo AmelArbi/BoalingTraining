@@ -1,78 +1,63 @@
 package com.valtech.amel.controller;
 
-import com.valtech.amel.model.Frame;
+import javax.validation.ValidationException;
 import com.valtech.amel.model.Game;
+import com.valtech.amel.service.GameService;
+import com.valtech.amel.view.GameView;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
+@Controller
 public class GameController {
-    public void wurfelnAccept(int zahl, Game game) {
-        if (game.getIteration() <= 9) {
-            if (game.getFrames().size() == game.getIteration()) {
-                wuerfelnAcceptNewFrame(zahl,game);
-            } else {
-                wuerfelnAcceptExistingFrame(zahl, game);
-            }
-        }
+
+    static final Logger logger = LoggerFactory.getLogger(GameController.class);
+    Game game;
+
+    @RequestMapping(value = "startgame", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public void resetGame() {
+        game = new Game();
     }
 
-    private void wuerfelnAcceptNewFrame(int zahl, Game game) {
-        Frame frame = new Frame(game.getIteration());
-        frame.addThrow(zahl);
-        game.getFrames().add(frame);
+    private final GameService gameService;
+    private final GameView gameView;
 
-        if (frame.isComplete()) {
-            addBonus(game);
-            game.setIteration(game.getIteration() + 1);
-        }
+    public GameController(GameService gameService, GameView gameView) {
+        this.gameService = gameService;
+        this.gameView = gameView;
+        logger.info("Initializing");
     }
 
-    private void wuerfelnAcceptExistingFrame(int zahl, Game game) {
-        Frame currentFrame = game.getFrames().get(game.getIteration());
-        currentFrame.addThrow(zahl);
-
-        if (currentFrame.isComplete()) {
-            addBonus(game);
-            game.setIteration(game.getIteration() + 1);
-        }
+    @RequestMapping(value = "spielstand", produces = MediaType.TEXT_PLAIN_VALUE)
+    @ResponseBody
+    public String spielStand() {
+        logger.info("Spielstand würde abgerufen");
+        return gameView.renderFrames(game);
     }
 
-    public void addBonus(Game game) {
-        Frame currentFrame = game.getFrames().get(game.getIteration());
-        if (game.getIteration() > 0) {
-            Frame prevFrame = game.getFrames().get(game.getIteration() - 1);
-            addBonus(game, currentFrame, prevFrame);
-        }
+    @RequestMapping(value = "spielername", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public void spielerName(String name) {
+        logger.info("Spielername : {}", name);
+        game.setPlayerName(name);
     }
 
-    private void addBonus(Game game, Frame currentFrame, Frame prevFrame) {
-        if (game.getIteration() >= 2) {
-            Frame prePrevFrame = game.getFrames().get(game.getIteration() - 2);
-            if (prePrevFrame.isStrike() && prevFrame.isStrike()) {
-                prePrevFrame.addBonus(currentFrame.getThrow(0));
-            }
+    @RequestMapping(value = "wurf", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public void wurf(int zahl) {
+        if (zahl < 0 || zahl > 10) {
+            logger.error("Falsche Wurf : {}", zahl);
+            throw new InvalidValueException();
         }
-        if (prevFrame.isSpare()) {
-            prevFrame.addBonus(currentFrame.getThrow(0));
-        } else if ((prevFrame.isStrike())) {
-            prevFrame.addBonus(currentFrame.getThrow(0));
-            if (game.getIteration() < 9) {
-
-                if (!currentFrame.isStrike()) {
-                    prevFrame.addBonus(currentFrame.getThrow(1));
-                }
-            } else if (game.getIteration() == 9) {
-                prevFrame.addBonus(currentFrame.getThrow(1));
-
-            }
-        }
-    }
-
-    public int calculateScore(Game game, int iteration) {
-        int sum = 0;
-        for (int i = 0; i < iteration; i++) {
-            sum += game.getFrames().get(i).getFinalScore();
-        }
-        return sum;
-
+        logger.info("Wurf : {}", zahl);
+        gameService.wurfelnAccept(zahl, game);
     }
 
 }
