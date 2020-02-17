@@ -1,6 +1,6 @@
 package com.valtech.amel.controller;
 
-import javax.validation.ValidationException;
+import com.valtech.amel.dto.GameDto;
 import com.valtech.amel.model.Game;
 import com.valtech.amel.service.GameService;
 import com.valtech.amel.view.GameView;
@@ -18,16 +18,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class GameController {
 
     static final Logger logger = LoggerFactory.getLogger(GameController.class);
-    Game game;
-
-    @RequestMapping(value = "startgame", method = RequestMethod.POST)
-    @ResponseStatus(HttpStatus.OK)
-    public void resetGame() {
-        game = new Game();
-    }
-
     private final GameService gameService;
     private final GameView gameView;
+    Game game;
+    GameDto gameDto;
 
     public GameController(GameService gameService, GameView gameView) {
         this.gameService = gameService;
@@ -35,11 +29,35 @@ public class GameController {
         logger.info("Initializing");
     }
 
+    @RequestMapping(value = "startgame", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public void resetGame() {
+        game = new Game();
+        gameDto=new GameDto(game);
+    }
+
     @RequestMapping(value = "spielstand", produces = MediaType.TEXT_PLAIN_VALUE)
     @ResponseBody
     public String spielStand() {
         logger.info("Spielstand würde abgerufen");
         return gameView.renderFrames(game);
+    }
+
+    @RequestMapping(value = "spielstandjson", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public Game spielStandJson() {
+        logger.info("spielstandjson würde abgerufen");
+        return game;
+    }
+
+    //Aufgabe : spielstandjson muss aktuellen Spielstand als game DTO zurückgeben
+    // Ressourcen bekommen ein id
+
+    @RequestMapping(value = "spielstandjsondto", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public GameDto spielStandJsonDto() {
+        logger.info("spielstandjsonDto würde abgerufen");
+        return gameDto;
     }
 
     @RequestMapping(value = "spielername", method = RequestMethod.POST)

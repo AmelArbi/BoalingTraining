@@ -2,8 +2,6 @@ package com.valtech.amel.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 
 
 public class Frame {
@@ -12,12 +10,16 @@ public class Frame {
     private int finalScore;
     private final List<Integer> throwList = new ArrayList<>(3);
 
+    public Frame(int number) {
+        this.number = number;
+    }
+
     public int getNumberOfThrows() {
         return throwList.size();
 
     }
 
-    private List<Integer> getThrowList() {
+    public List<Integer> getThrowList() {
         return throwList;
     }
 
@@ -41,9 +43,7 @@ public class Frame {
         finalScore += bonus;
     }
 
-    public Frame(int number) {
-        this.number = number;
-    }
+
 
     public boolean isComplete() {
         if (!isLastFrame()) {

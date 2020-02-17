@@ -2,16 +2,12 @@ package com.valtech.amel.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
-
-
 
 public class Game {
 
-    private int iteration = 0;
-    private List<Frame> frames = new ArrayList<>(10);
-    private String playerName;
+    protected int iteration = 0;
+    protected List<Frame> frames = new ArrayList<>(10);
+    protected String playerName;
 
     public int getIteration() {
         return iteration;
