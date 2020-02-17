@@ -1,38 +1,28 @@
 package com.valtech.amel.dto;
 
+import java.util.ArrayList;
 import java.util.List;
-import com.valtech.amel.model.Frame;
 
 public class FrameDto {
 
     //throwslist
-    private List<Integer> throwList;
+    private  List<Integer> throwList= new ArrayList<>(3);
 
     //score
-    private int score;
+    private final int score;
 
-    private Frame frame;
-
-    public FrameDto(Frame frame) {
-        this.frame = frame;
+    public FrameDto(List<Integer> throwList, int score) {
+        this.throwList = throwList;
+        this.score = score;
     }
 
     public List<Integer> getThrowList() {
-        this.throwList = frame.getThrowList();
         return throwList;
     }
 
-    //gibt nicht im Frame
-/*    public void setThrowList(List<Integer> throwList) {
-        this.throwList = throwList;
-    }*/
 
     public int getScore() {
-        this.score=frame.getFinalScore();
         return score;
     }
 
-/*    public void setScore(int score) {
-
-    }*/
 }

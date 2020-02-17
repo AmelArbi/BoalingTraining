@@ -2,69 +2,38 @@ package com.valtech.amel.dto;
 
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.valtech.amel.model.Frame;
-import com.valtech.amel.model.Game;
 
 public class GameDto {
     //iteration
-    private int turn;
+    private final int turn;
 
     //frames
-    private List<Frame> frames;//List<Frame>  oder List<FrameDto> !!!!!!!!!!!!????????
+    private final List<FrameDto> frames;
 
     //PlayerName
-    private String playerName;
+    private final String playerName;
 
-    private Game game;
-
-    public void setFrames(List<Frame> frames) {
+    public GameDto(int turn, List<FrameDto> frames, String playerName) {
+        this.turn = turn;
         this.frames = frames;
+        this.playerName = playerName;
     }
-
-    public Game getGame() {
-        return game;
-    }
-
-    public void setGame(Game game) {
-        this.game = game;
-    }
-
-    public GameDto(@JsonProperty("game") Game game) {
-        this.game = game;
-        this.turn = game.getIteration();
-        this.frames = game.getFrames();
-        this.playerName = game.getPlayerName();
-    }
-
-
 
     public int getTurn() {
         return turn;
     }
 
-    public void setTurn(int turn) {
-        game.setIteration(turn);
-        this.turn = turn;
-    }
 
-    public List<Frame> getFrames() {
+
+    public List<FrameDto> getFrames() {
         return this.frames;
     }
 
-    // seTFrame gibt nicht im Game => setFrame nur durch wuerfelaccept
-/*    public void setFrames(List<Frame> frames) {
-        game.
-        this.frames = frames;
-    }*/
 
     public String getPlayerName() {
         return playerName;
     }
 
-    public void setPlayerName(String playerName) {
-        game.setPlayerName(playerName);
-        this.playerName = playerName;
-    }
 }
 
 

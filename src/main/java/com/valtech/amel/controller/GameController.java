@@ -1,6 +1,11 @@
 package com.valtech.amel.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Stream;
+import com.valtech.amel.dto.FrameDto;
 import com.valtech.amel.dto.GameDto;
+import com.valtech.amel.model.Frame;
 import com.valtech.amel.model.Game;
 import com.valtech.amel.service.GameService;
 import com.valtech.amel.view.GameView;
@@ -19,13 +24,10 @@ public class GameController {
 
     static final Logger logger = LoggerFactory.getLogger(GameController.class);
     private final GameService gameService;
-    private final GameView gameView;
     Game game;
-    GameDto gameDto;
 
-    public GameController(GameService gameService, GameView gameView) {
+    public GameController(GameService gameService) {
         this.gameService = gameService;
-        this.gameView = gameView;
         logger.info("Initializing");
     }
 
@@ -33,22 +35,8 @@ public class GameController {
     @ResponseStatus(HttpStatus.OK)
     public void resetGame() {
         game = new Game();
-        gameDto=new GameDto(game);
     }
 
-    @RequestMapping(value = "spielstand", produces = MediaType.TEXT_PLAIN_VALUE)
-    @ResponseBody
-    public String spielStand() {
-        logger.info("Spielstand würde abgerufen");
-        return gameView.renderFrames(game);
-    }
-
-    @RequestMapping(value = "spielstandjson", produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    public Game spielStandJson() {
-        logger.info("spielstandjson würde abgerufen");
-        return game;
-    }
 
     //Aufgabe : spielstandjson muss aktuellen Spielstand als game DTO zurückgeben
     // Ressourcen bekommen ein id
@@ -57,6 +45,17 @@ public class GameController {
     @ResponseBody
     public GameDto spielStandJsonDto() {
         logger.info("spielstandjsonDto würde abgerufen");
+
+        List<FrameDto> frameDtos = new ArrayList<>();
+
+        for (int i = 0; i < game.getIteration(); i++) {
+            logger.info("FrameDto für iteration {} wird erstellt",i);
+            FrameDto frameDto =
+                    new FrameDto(game.getFrames().get(i).getThrowList(), game.getFrames().get(i).getFinalScore());
+            frameDtos.add(frameDto);
+
+        }
+        GameDto gameDto = new GameDto(game.getIteration(), frameDtos, game.getPlayerName());
         return gameDto;
     }
 
