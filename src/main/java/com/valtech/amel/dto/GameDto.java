@@ -1,6 +1,7 @@
 package com.valtech.amel.dto;
 
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.valtech.amel.model.Frame;
 import com.valtech.amel.model.Game;
 
@@ -28,7 +29,7 @@ public class GameDto {
         this.game = game;
     }
 
-    public GameDto(Game game) {
+    public GameDto(@JsonProperty("game") Game game) {
         this.game = game;
         this.turn = game.getIteration();
         this.frames = game.getFrames();
