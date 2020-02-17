@@ -29,8 +29,8 @@ public class GameControllerTest {
         assertEquals(1, gameController.spielStandJsonDto().getTurn());
         assertEquals("Alex", gameController.spielStandJsonDto().getPlayerName());
         assertEquals(10, gameController.spielStandJsonDto().getFrames().get(0).getScore());
-        assertEquals(list,gameController.spielStandJsonDto().getFrames().get(0).getThrowList());
         assertEquals(10,gameController.spielStandJsonDto().getFrames().get(0).getScore());
+        assertEquals(list,gameController.spielStandJsonDto().getFrames().get(0).getThrowList());
 
         gameController.wurf(10);
         assertEquals(2, gameController.spielStandJsonDto().getTurn());
@@ -76,6 +76,65 @@ public class GameControllerTest {
         assertEquals(20, gameController.spielStandJsonDto().getFrames().get(4).getScore());
         assertEquals(10, gameController.spielStandJsonDto().getFrames().get(5).getScore());
         assertEquals(list,gameController.spielStandJsonDto().getFrames().get(5).getThrowList());
+
+        gameController.wurf(10);
+        assertEquals(7, gameController.spielStandJsonDto().getTurn());
+        assertEquals("Alex", gameController.spielStandJsonDto().getPlayerName());
+        assertEquals(30, gameController.spielStandJsonDto().getFrames().get(0).getScore());
+        assertEquals(30, gameController.spielStandJsonDto().getFrames().get(1).getScore());
+        assertEquals(30, gameController.spielStandJsonDto().getFrames().get(2).getScore());
+        assertEquals(30, gameController.spielStandJsonDto().getFrames().get(3).getScore());
+        assertEquals(30, gameController.spielStandJsonDto().getFrames().get(4).getScore());
+        assertEquals(20, gameController.spielStandJsonDto().getFrames().get(5).getScore());
+        assertEquals(10, gameController.spielStandJsonDto().getFrames().get(6).getScore());
+        assertEquals(list,gameController.spielStandJsonDto().getFrames().get(6).getThrowList());
+
+        gameController.wurf(10);
+        assertEquals(8, gameController.spielStandJsonDto().getTurn());
+        assertEquals("Alex", gameController.spielStandJsonDto().getPlayerName());
+        assertEquals(30, gameController.spielStandJsonDto().getFrames().get(0).getScore());
+        assertEquals(30, gameController.spielStandJsonDto().getFrames().get(1).getScore());
+        assertEquals(30, gameController.spielStandJsonDto().getFrames().get(2).getScore());
+        assertEquals(30, gameController.spielStandJsonDto().getFrames().get(3).getScore());
+        assertEquals(30, gameController.spielStandJsonDto().getFrames().get(4).getScore());
+        assertEquals(30, gameController.spielStandJsonDto().getFrames().get(5).getScore());
+        assertEquals(20, gameController.spielStandJsonDto().getFrames().get(6).getScore());
+        assertEquals(10, gameController.spielStandJsonDto().getFrames().get(7).getScore());
+        assertEquals(list,gameController.spielStandJsonDto().getFrames().get(7).getThrowList());
+
+        gameController.wurf(10);
+        assertEquals(9, gameController.spielStandJsonDto().getTurn());
+        assertEquals("Alex", gameController.spielStandJsonDto().getPlayerName());
+        assertEquals(30, gameController.spielStandJsonDto().getFrames().get(0).getScore());
+        assertEquals(30, gameController.spielStandJsonDto().getFrames().get(1).getScore());
+        assertEquals(30, gameController.spielStandJsonDto().getFrames().get(2).getScore());
+        assertEquals(30, gameController.spielStandJsonDto().getFrames().get(3).getScore());
+        assertEquals(30, gameController.spielStandJsonDto().getFrames().get(4).getScore());
+        assertEquals(30, gameController.spielStandJsonDto().getFrames().get(5).getScore());
+        assertEquals(30, gameController.spielStandJsonDto().getFrames().get(6).getScore());
+        assertEquals(20, gameController.spielStandJsonDto().getFrames().get(7).getScore());
+        assertEquals(10, gameController.spielStandJsonDto().getFrames().get(8).getScore());
+        assertEquals(list,gameController.spielStandJsonDto().getFrames().get(8).getThrowList());
+
+        gameController.wurf(10);
+        gameController.wurf(10);
+        gameController.wurf(10);
+        assertEquals(10, gameController.spielStandJsonDto().getTurn());
+        assertEquals("Alex", gameController.spielStandJsonDto().getPlayerName());
+        assertEquals(30, gameController.spielStandJsonDto().getFrames().get(0).getScore());
+        assertEquals(30, gameController.spielStandJsonDto().getFrames().get(1).getScore());
+        assertEquals(30, gameController.spielStandJsonDto().getFrames().get(2).getScore());
+        assertEquals(30, gameController.spielStandJsonDto().getFrames().get(3).getScore());
+        assertEquals(30, gameController.spielStandJsonDto().getFrames().get(4).getScore());
+        assertEquals(30, gameController.spielStandJsonDto().getFrames().get(5).getScore());
+        assertEquals(30, gameController.spielStandJsonDto().getFrames().get(6).getScore());
+        assertEquals(30, gameController.spielStandJsonDto().getFrames().get(7).getScore());
+        assertEquals(30, gameController.spielStandJsonDto().getFrames().get(8).getScore());
+        assertEquals(30, gameController.spielStandJsonDto().getFrames().get(9).getScore());
+        list.add(10);
+        list.add(10);
+        assertEquals(list,gameController.spielStandJsonDto().getFrames().get(9).getThrowList());
+
 
 
 

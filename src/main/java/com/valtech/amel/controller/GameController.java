@@ -52,6 +52,7 @@ public class GameController {
             logger.info("FrameDto für iteration {} wird erstellt",i);
             FrameDto frameDto =
                     new FrameDto(game.getFrames().get(i).getThrowList(), game.getFrames().get(i).getFinalScore());
+                    //new FrameDto(game.getFrames().get(i).getThrowList(), gameService.calculateScore(game,game.getIteration()));
             frameDtos.add(frameDto);
 
         }
