@@ -2,13 +2,10 @@ package com.valtech.amel.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 import com.valtech.amel.dto.FrameDto;
 import com.valtech.amel.dto.GameDto;
-import com.valtech.amel.model.Frame;
 import com.valtech.amel.model.Game;
 import com.valtech.amel.service.GameService;
-import com.valtech.amel.view.GameView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -52,9 +49,7 @@ public class GameController {
             logger.info("FrameDto für iteration {} wird erstellt",i);
             FrameDto frameDto =
                     new FrameDto(game.getFrames().get(i).getThrowList(), game.getFrames().get(i).getFinalScore());
-                    //new FrameDto(game.getFrames().get(i).getThrowList(), gameService.calculateScore(game,game.getIteration()));
             frameDtos.add(frameDto);
-
         }
         GameDto gameDto = new GameDto(game.getIteration(), frameDtos, game.getPlayerName());
         return gameDto;
