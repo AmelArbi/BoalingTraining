@@ -34,7 +34,6 @@ public class GameControllerTest {
         logger.info("Begin GameInitialized");
         gameController.resetGame();
         logger.info("Game is initialised ");
-        assertThat(gameController.spielStandJsonDto().getFrames().size(), is(0));
         assertThat(gameController.spielStandJsonDto().getFrames().isEmpty(), is(true));
         assertThat(gameController.spielStandJsonDto().getPlayerName(), nullValue());
         assertThat(gameController.spielStandJsonDto().getTurn(), is(0));
@@ -68,11 +67,6 @@ public class GameControllerTest {
         assertThat(gameController.spielStandJsonDto().getFrames().get(2).getThrowList(), is(expected));
 
     }
-
-
-
-
-
 
     @Test
     public void spielStandJsonDtoPerfectGameTest(){
