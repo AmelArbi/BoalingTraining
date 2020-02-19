@@ -43,7 +43,13 @@ public class GameController {
     public GameDto spielStandJsonDto() {
         logger.info("spielstandjsonDto würde abgerufen");
 
+        if (game==null){
+            logger.error("Game is not Initialized.");
+            throw new GameNotInitialized();
+        }
+
         List<FrameDto> frameDtos = new ArrayList<>();
+
 
         for (int i = 0; i < game.getIteration(); i++) {
             logger.info("FrameDto für iteration {} wird erstellt",i);
@@ -61,7 +67,7 @@ public class GameController {
         logger.info("Spielername : {}", name);
         game.setPlayerName(name);
     }
-
+//bekommt einen Zahl als JsonDto
     @RequestMapping(value = "wurf", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
     public void wurf(int zahl) {
