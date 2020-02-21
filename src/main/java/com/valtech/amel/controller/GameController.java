@@ -35,7 +35,6 @@ public class GameController {
         game = new Game();
     }
 
-
     //Aufgabe : spielstandjson muss aktuellen Spielstand als game DTO zurückgeben
     // Ressourcen bekommen ein id
 
@@ -44,16 +43,15 @@ public class GameController {
     public GameDto spielStandJsonDto() {
         logger.info("spielstandjsonDto würde abgerufen");
 
-        if (game==null){
+        if (game == null) {
             logger.error("Game is not Initialized.");
             throw new GameNotInitialized();
         }
 
         List<FrameDto> frameDtos = new ArrayList<>();
 
-
         for (int i = 0; i < game.getIteration(); i++) {
-            logger.info("FrameDto für iteration {} wird erstellt",i);
+            logger.info("FrameDto für iteration {} wird erstellt", i);
             FrameDto frameDto =
                     new FrameDto(game.getFrames().get(i).getThrowList(), game.getFrames().get(i).getFinalScore());
             frameDtos.add(frameDto);
@@ -69,7 +67,7 @@ public class GameController {
         game.setPlayerName(name);
     }
 
-//bekommt einen Zahl als JsonDto
+    //bekommt einen Zahl als JsonDto
     @RequestMapping(value = "wurf", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
     public void wurf(int zahl) {
@@ -81,12 +79,18 @@ public class GameController {
         gameService.wurfelnAccept(zahl, game);
     }
 
-
-   @RequestMapping(value = "wurfdto", method = RequestMethod.POST)
+    @RequestMapping(value = "wurfdto", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public void wurfDto(int zahl){
-        logger.info("wurfDto {}",zahl);
-       WurfDto wurfDto = new WurfDto(zahl);
+    public void wurfDto(int zahl) {
+        logger.info("Zahl {}", zahl);
+        WurfDto wurfDto = new WurfDto(zahl);
+        logger.info("Wurf DTO {}", wurfDto.getZahl());
     }
+
+    //    @RequestMapping(value = "getwurfdto", method = RequestMethod.GET)
+    //    @ResponseStatus(HttpStatus.OK)
+    //    public void getWurfDto(){
+    //
+    //    }
 
 }
