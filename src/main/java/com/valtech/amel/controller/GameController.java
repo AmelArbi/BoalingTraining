@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import com.valtech.amel.dto.FrameDto;
 import com.valtech.amel.dto.GameDto;
+import com.valtech.amel.dto.WurfDto;
 import com.valtech.amel.model.Game;
 import com.valtech.amel.service.GameService;
 import org.slf4j.Logger;
@@ -67,6 +68,7 @@ public class GameController {
         logger.info("Spielername : {}", name);
         game.setPlayerName(name);
     }
+
 //bekommt einen Zahl als JsonDto
     @RequestMapping(value = "wurf", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
@@ -77,6 +79,14 @@ public class GameController {
         }
         logger.info("Wurf : {}", zahl);
         gameService.wurfelnAccept(zahl, game);
+    }
+
+
+   @RequestMapping(value = "wurfdto", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public void wurfDto(int zahl){
+        logger.info("wurfDto {}",zahl);
+       WurfDto wurfDto = new WurfDto(zahl);
     }
 
 }
