@@ -1,9 +1,9 @@
-package com.valtech.amel.service;
+package com.valtech.amel.controller;
 
 import java.util.Arrays;
 import java.util.List;
-import com.valtech.amel.controller.GameController;
-import com.valtech.amel.controller.GameNotInitialized;
+import com.valtech.amel.service.GameService;
+import com.valtech.amel.service.GameServiceTest;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

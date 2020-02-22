@@ -87,6 +87,8 @@ public class GameController {
         logger.info("Wurf DTO {}", wurfDto.getZahl());
     }
 
+
+
     //    @RequestMapping(value = "getwurfdto", method = RequestMethod.GET)
     //    @ResponseStatus(HttpStatus.OK)
     //    public void getWurfDto(){
