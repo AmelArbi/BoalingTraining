@@ -16,11 +16,11 @@ public class GameControllerTest {
 
     Logger logger = LoggerFactory.getLogger(GameServiceTest.class);
 
-//Montag Aufgabe :
-//    game nicht initialisiert und spielsatnd wird abgefragt
-//    erwartung: controller wirft eine exception die zu einem 400 (bad request) response code führt
-//    game initialisiert, keine würfe nur der name ist gesetzt
-//    game initialisiert, 3 würfe sind getan: DTO hat alle daten und korrekte  Scores
+    //Montag Aufgabe :
+    //    game nicht initialisiert und spielsatnd wird abgefragt
+    //    erwartung: controller wirft eine exception die zu einem 400 (bad request) response code führt
+    //    game initialisiert, keine würfe nur der name ist gesetzt
+    //    game initialisiert, 3 würfe sind getan: DTO hat alle daten und korrekte  Scores
 
 
     //

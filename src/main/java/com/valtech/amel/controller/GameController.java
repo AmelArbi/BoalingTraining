@@ -81,18 +81,18 @@ public class GameController {
 
     @RequestMapping(value = "wurfdto", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public void wurfDto(int zahl) {
-        logger.info("Zahl {}", zahl);
-        WurfDto wurfDto = new WurfDto(zahl);
-        logger.info("Wurf DTO {}", wurfDto.getZahl());
+    public void wurfDto(WurfDto wurfDto) {
+        logger.info("wurfDto {}", wurfDto);
+
     }
 
+    //curl request mit dem payload: { "zahl": 10 }
 
 
-    //    @RequestMapping(value = "getwurfdto", method = RequestMethod.GET)
-    //    @ResponseStatus(HttpStatus.OK)
-    //    public void getWurfDto(){
-    //
-    //    }
+
+
+
+
+
 
 }

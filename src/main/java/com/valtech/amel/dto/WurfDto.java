@@ -2,13 +2,20 @@ package com.valtech.amel.dto;
 
 public class WurfDto {
 
-    int zahl;
+    Integer zahl;
 
-    public WurfDto(int zahl) {
+    public WurfDto() {
+    }
+
+    public WurfDto(Integer zahl) {
         this.zahl = zahl;
     }
 
-    public int getZahl() {
+    public Integer getZahl() {
         return zahl;
+    }
+
+    public void setZahl(Integer zahl) {
+        this.zahl = zahl;
     }
 }
