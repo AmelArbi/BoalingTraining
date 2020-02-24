@@ -84,6 +84,12 @@ public class GameController {
     @ResponseStatus(HttpStatus.OK)
     public void wurfDto(@RequestBody WurfDto wurfDto) {
         logger.info("Zahl in wurfDto ist : {}", wurfDto.getZahl());
+        if (wurfDto.getZahl() < 0 || wurfDto.getZahl() > 10) {
+            logger.error("Falsche Wurf : {}", wurfDto.getZahl());
+            throw new InvalidValueException();
+        }
+        logger.info("Wurf : {}", wurfDto.getZahl());
+        gameService.wurfelnAccept(wurfDto.getZahl(), game);
     }
 
 
