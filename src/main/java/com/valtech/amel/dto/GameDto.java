@@ -1,7 +1,6 @@
 package com.valtech.amel.dto;
 
 import java.util.List;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class GameDto {
     //iteration

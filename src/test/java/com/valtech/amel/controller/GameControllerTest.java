@@ -1,7 +1,6 @@
 package com.valtech.amel.controller;
 
-import java.util.Arrays;
-import java.util.List;
+import com.valtech.amel.dto.WurfDto;
 import com.valtech.amel.service.GameService;
 import com.valtech.amel.service.GameServiceTest;
 import org.junit.Test;
@@ -25,48 +24,44 @@ public class GameControllerTest {
 
     //
 
+
     @Test (expected= GameNotInitialized.class)
-    public void willReturnExceptionIfGameNotInitialized() {
-        gameController.spielStandJsonDto();
+    public void willReturnExceptionIfGameNotInitialzed() {
+        gameController.spielStand("12","123");
+    }
+
+    @Test (expected= PlayerNotFound.class)
+    public void willReturnExceptionIfPlayerNotFound() {
+        gameController.startGame();
+        gameController.spielStand("12","123");
     }
 
     @Test ()
     public void GameInitialized() {
         logger.info("Begin GameInitialized");
-        gameController.resetGame();
+        String gameId = gameController.addGame();
         logger.info("Game is initialised ");
-        assertThat(gameController.spielStandJsonDto().getFrames().isEmpty(), is(true));
-        assertThat(gameController.spielStandJsonDto().getPlayerName(), nullValue());
-        assertThat(gameController.spielStandJsonDto().getTurn(), is(0));
-
-
+        String playerId = gameController.addPlayerGame(gameId);
+        assertThat(gameController.spielStand(gameId,playerId).getFrames().isEmpty(), is(true));
+        assertThat(gameController.spielStand(gameId,playerId).getPlayerName(), nullValue());
+        assertThat(gameController.spielStand(gameId,playerId).getTurn(), is(0));
     }
 
+
     @Test ()
-    public void GameInitialized3Turn() {
+    public void GameInitialized4Turn() {
         logger.info("Begin GameInitialized");
-        gameController.resetGame();
-        logger.info("Game is initialised ");
-        gameController.wurf(10);
-        logger.info("First Turn ");
-        gameController.wurf(10);
-        logger.info("Second Turn ");
-        gameController.wurf(10);
-        logger.info("Third Turn ");
-
-
-        assertThat(gameController.spielStandJsonDto().getFrames().size(),is(3));
-        assertThat(gameController.spielStandJsonDto().getTurn(), is(3));
-        assertThat(gameController.spielStandJsonDto().getPlayerName(), nullValue());
-        assertThat(gameController.spielStandJsonDto().getFrames().get(0).getScore(), is(30));
-        assertThat(gameController.spielStandJsonDto().getFrames().get(1).getScore(), is(20));
-        assertThat(gameController.spielStandJsonDto().getFrames().get(2).getScore(), is(10));
-
-        List<Integer> expected = Arrays.asList(10);
-        assertThat(gameController.spielStandJsonDto().getFrames().get(0).getThrowList(), is(expected));
-        assertThat(gameController.spielStandJsonDto().getFrames().get(1).getThrowList(), is(expected));
-        assertThat(gameController.spielStandJsonDto().getFrames().get(2).getThrowList(), is(expected));
-
+        String gameId = gameController.addGame();
+        String playerId = gameController.addPlayerGame(gameId);
+        logger.info("Game Nr : {}. Player Nr {}", gameId,playerId);
+        gameController.wurf(gameId,playerId,new WurfDto(10));
+        gameController.wurf(gameId,playerId,new WurfDto(10));
+        gameController.wurf(gameId,playerId,new WurfDto(10));
+        gameController.wurf(gameId,playerId,new WurfDto(10));
+        assertThat(gameController.spielStand(gameId,playerId).getFrames().get(0).getScore(), is(30));
+        assertThat(gameController.spielStand(gameId,playerId).getFrames().get(1).getScore(), is(60));
+        assertThat(gameController.spielStand(gameId,playerId).getFrames().get(2).getScore(), is(80));
+        assertThat(gameController.spielStand(gameId,playerId).getFrames().get(3).getScore(), is(90));
     }
 
 

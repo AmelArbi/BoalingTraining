@@ -19,6 +19,10 @@ public class Frame {
 
     }
 
+    public int getNumber() {
+        return number;
+    }
+
     public List<Integer> getThrowList() {
         return throwList;
     }
