@@ -2,13 +2,27 @@ package com.valtech.amel.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-
+@Entity
 public class Frame {
 
-    private final int number;
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    private Long id;
+
+    private  int number;
     private int finalScore;
+
+    @ElementCollection
     private final List<Integer> throwList = new ArrayList<>(3);
+
+    public Frame() {
+    }
 
     public Frame(int number) {
         this.number = number;

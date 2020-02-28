@@ -1,7 +1,7 @@
 package com.valtech.amel.service;
 
 import com.valtech.amel.model.Frame;
-import com.valtech.amel.model.Game;
+import com.valtech.amel.model.PlayerGame;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,7 @@ public class GameService {
         logger.info("Initializing");
     }
 
-    public void wurfelnAccept(int zahl, Game game) {
+    public void wurfelnAccept(int zahl, PlayerGame game) {
         if (game.getIteration() <= 9) {
             if (game.getFrames().size() == game.getIteration()) {
                 wuerfelnAcceptNewFrame(zahl,game);
@@ -25,7 +25,7 @@ public class GameService {
         }
     }
 
-    private void wuerfelnAcceptNewFrame(int zahl, Game game) {
+    private void wuerfelnAcceptNewFrame(int zahl, PlayerGame game) {
         Frame frame = new Frame(game.getIteration());
         frame.addThrow(zahl);
         game.getFrames().add(frame);
@@ -36,7 +36,7 @@ public class GameService {
         }
     }
 
-    private void wuerfelnAcceptExistingFrame(int zahl, Game game) {
+    private void wuerfelnAcceptExistingFrame(int zahl, PlayerGame game) {
         Frame currentFrame = game.getFrames().get(game.getIteration());
         currentFrame.addThrow(zahl);
 
@@ -46,7 +46,7 @@ public class GameService {
         }
     }
 
-    public void addBonus(Game game) {
+    public void addBonus(PlayerGame game) {
         Frame currentFrame = game.getFrames().get(game.getIteration());
         if (game.getIteration() > 0) {
             Frame prevFrame = game.getFrames().get(game.getIteration() - 1);
@@ -54,7 +54,7 @@ public class GameService {
         }
     }
 
-    private void addBonus(Game game, Frame currentFrame, Frame prevFrame) {
+    private void addBonus(PlayerGame game, Frame currentFrame, Frame prevFrame) {
         if (game.getIteration() >= 2) {
             Frame prePrevFrame = game.getFrames().get(game.getIteration() - 2);
             if (prePrevFrame.isStrike() && prevFrame.isStrike()) {
@@ -77,7 +77,7 @@ public class GameService {
         }
     }
 
-    public int calculateScore(Game game, int iteration) {
+    public int calculateScore(PlayerGame game, int iteration) {
         int sum = 0;
         for (int i = 0; i < iteration; i++) {
             sum += game.getFrames().get(i).getFinalScore();

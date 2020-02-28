@@ -1,16 +1,16 @@
 package com.valtech.amel.service;
 
-import com.valtech.amel.model.Game;
+import com.valtech.amel.model.PlayerGame;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import static org.junit.Assert.assertEquals;
 
-public class GameServiceRegressionTests {
+public class PlayerGameServiceRegressionTests {
 
-    Logger logger = LoggerFactory.getLogger(GameServiceTest.class);
+    Logger logger = LoggerFactory.getLogger(PlayerGameServiceTest.class);
     GameService gameService = new GameService();
-    Game game = new Game();
+    PlayerGame game = new PlayerGame();
 
     @Test
     public void GameOneSpareFiveStrike() {

@@ -1,18 +1,18 @@
 package com.valtech.amel.service;
 
 import java.util.stream.IntStream;
-import com.valtech.amel.model.Game;
+import com.valtech.amel.model.PlayerGame;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import static org.junit.Assert.*;
 
-public class GameServiceTest {
+public class PlayerGameServiceTest {
 
-    Logger logger = LoggerFactory.getLogger(GameServiceTest.class);
+    Logger logger = LoggerFactory.getLogger(PlayerGameServiceTest.class);
     GameService gameService = new GameService();
-    Game game = new Game();
+    PlayerGame game = new PlayerGame();
 
     @Test
     public void wuerfelAccept() {

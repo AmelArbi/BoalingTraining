@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import com.valtech.amel.service.GameService;
-import com.valtech.amel.model.Game;
+import com.valtech.amel.model.PlayerGame;
 import com.valtech.amel.view.GameView;
 
 public class BowlingApp {
 
     Scanner myScanner = new Scanner(System.in);
-    List<Game> playersGames = new ArrayList<>(6);
+    List<PlayerGame> playersGames = new ArrayList<>(6);
     GameService gameService = new GameService();
     private GameView gameView = new GameView(gameService);
 
@@ -47,7 +47,7 @@ public class BowlingApp {
 
     private void setGames(int numberOfPlayers) {
         for (int i = 0; i < numberOfPlayers; i++) {
-            playersGames.add(new Game());
+            playersGames.add(new PlayerGame());
             System.out.println("Please enter the name of the player number " + (i + 1) + " : ");
             playersGames.get(i).setPlayerName(myScanner.nextLine());
         }
@@ -73,7 +73,7 @@ public class BowlingApp {
         }
     }
 
-    void getTurn(Game game, int iteration) {
+    void getTurn(PlayerGame game, int iteration) {
         setThrow(game, " enter your first throw : ");
         setSecondThrow(game, iteration);
         if (game.getFrames().get(iteration).isLastFrame() && game.getFrames().get(iteration)
@@ -87,7 +87,7 @@ public class BowlingApp {
         }
     }
 
-    private void setSecondThrow(Game game, int iteration) {
+    private void setSecondThrow(PlayerGame game, int iteration) {
         if (!game.getFrames().get(iteration).isStrike()) {
             gameService.wurfelnAccept(
                     getSecondThrow(game, iteration, game.getFrames().get(iteration).getThrow(0)),
@@ -97,12 +97,12 @@ public class BowlingApp {
         }
     }
 
-    private void setThrow(Game game, String s) {
+    private void setThrow(PlayerGame game, String s) {
         gameService.wurfelnAccept(getValidNumber(game.getPlayerName() + s, 0, 10),
                 game);
     }
 
-    private int getSecondThrow(Game game, int iteration, int throwResult) {
+    private int getSecondThrow(PlayerGame game, int iteration, int throwResult) {
         boolean valid = false;
         while (!valid) {
             throwResult = getValidNumber(

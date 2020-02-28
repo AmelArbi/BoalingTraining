@@ -1,8 +1,7 @@
 package com.valtech.amel.view;
 
-import java.sql.SQLOutput;
 import com.valtech.amel.service.GameService;
-import com.valtech.amel.model.Game;
+import com.valtech.amel.model.PlayerGame;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -24,14 +23,14 @@ public class GameView {
         this.gameService = gameService;
     }
 
-    public void showFrames(Game game) {
+    public void showFrames(PlayerGame game) {
 
         showHeader();
         showThrows(game);
         showScore(game);
     }
 
-    public String renderFrames(Game game) {
+    public String renderFrames(PlayerGame game) {
         return renderSpielerName(game) + renderHeader() + renderThrows(game) + renderScore(game);
     }
 
@@ -39,7 +38,7 @@ public class GameView {
         System.out.print(renderHeader());
     }
 
-    private String renderSpielerName(Game game){
+    private String renderSpielerName(PlayerGame game){
         return  game.getPlayerName() + "\n";
 
     }
@@ -58,11 +57,11 @@ public class GameView {
         return ausgabe;
     }
 
-    private void showThrows(Game game) {
+    private void showThrows(PlayerGame game) {
         System.out.print(renderThrows(game));
     }
 
-    private String renderThrows(Game game) {
+    private String renderThrows(PlayerGame game) {
         String ausgabe = "";
         for (int k = 0; k < game.getFrames().size(); k++) {
             if (game.getFrames().get(k).isLastFrame()) {
@@ -118,11 +117,11 @@ public class GameView {
         return ausgabe;
     }
 
-    private void showScore(Game game) {
+    private void showScore(PlayerGame game) {
         System.out.print(renderScore(game));
     }
 
-    private String renderScore(Game game) {
+    private String renderScore(PlayerGame game) {
         String ausgabe = "";
         for (int l = 0; l < game.getFrames().size(); l++) {
 

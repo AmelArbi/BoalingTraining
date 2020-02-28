@@ -1,13 +1,13 @@
 package com.valtech.amel.dto;
 
-public class SpielerNameDto {
+public class PlayerNameDto {
 
     String name;
 
-    public SpielerNameDto() {
+    public PlayerNameDto() {
     }
 
-    public SpielerNameDto(String name) {
+    public PlayerNameDto(String name) {
         this.name = name;
     }
 
