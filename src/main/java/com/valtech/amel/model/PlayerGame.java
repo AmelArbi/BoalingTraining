@@ -51,6 +51,13 @@ public class PlayerGame {
     public PlayerGame() {
     }
 
+
+
+    public PlayerGame(long id) {
+        this.id = id;
+    }
+
+
     public int getIteration() {
         return iteration;
     }

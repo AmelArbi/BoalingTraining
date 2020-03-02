@@ -2,6 +2,7 @@ package com.valtech.amel.controller;
 
 import java.util.Optional;
 import com.valtech.amel.model.Game;
+import com.valtech.amel.model.PlayerGame;
 import com.valtech.amel.service.GameRepository;
 import com.valtech.amel.service.GameRepositoryClass;
 import com.valtech.amel.service.GameService;
@@ -42,6 +43,12 @@ public class PlayerGameRepositoryClassTests {
                 .thenReturn(new Game(10));
         when(gameRepository.findById(10l))
                 .thenReturn(Optional.of((new Game(10))));
+
+
+        when(playerGameRepository.save(any()))
+                .thenReturn(new PlayerGame(1));
+        when(playerGameRepository.findByGameAndById(gameRepository.findById(10l).get(),1l));
+
 
         long gameId = gameRepositoryClass.createGame();
         long playerId = gameRepositoryClass.createPlayerGame(10);

@@ -29,7 +29,7 @@ public class GameRepositoryClass {
                 .findById(gameId)
                 .orElseThrow(GameNotInitialized::new);
         PlayerGame playerGame = playerGameRepository
-                .findByGameAndBAndId(game, playerId)
+                .findByGameAndById(game, playerId)
                 .orElseThrow(PlayerNotFound::new);
         return playerGame;
     }
