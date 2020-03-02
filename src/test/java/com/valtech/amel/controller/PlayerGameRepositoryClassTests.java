@@ -23,8 +23,8 @@ public class PlayerGameRepositoryClassTests {
     private GameRepository gameRepository;
     private PlayerGameRepository playerGameRepository;
 
-    @Before
-    public void init(){
+    @Before// with BeforeClass, will be excecuted only one time before
+    public void init(){//with static, int() will be only one time excecuted
         gameRepository = Mockito.mock(GameRepository.class);
         playerGameRepository = Mockito.mock(PlayerGameRepository.class);
         gameRepositoryClass = new GameRepositoryClass(gameRepository, playerGameRepository);
@@ -47,8 +47,10 @@ public class PlayerGameRepositoryClassTests {
 
         when(playerGameRepository.save(any()))
                 .thenReturn(new PlayerGame(1));
-        when(playerGameRepository.findByGameAndById(gameRepository.findById(10l).get(),1l))
-        .thenReturn(Optional.of(new PlayerGame(1)));
+        when(playerGameRepository.findById(1l))
+                .thenReturn(Optional.of(new PlayerGame(1)));
+//        when(playerGameRepository.findByGameAndById(gameRepository.findById(10l).get(),1l))
+//        .thenReturn(Optional.of(new PlayerGame(1)));
 
 
         long gameId = gameRepositoryClass.createGame();
