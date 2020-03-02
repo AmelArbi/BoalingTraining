@@ -1,43 +1,63 @@
 package com.valtech.amel.controller;
 
-import com.valtech.amel.model.PlayerGame;
+import java.util.Optional;
+import com.valtech.amel.model.Game;
+import com.valtech.amel.service.GameRepository;
 import com.valtech.amel.service.GameRepositoryClass;
-import com.valtech.amel.service.PlayerGameServiceTest;
+import com.valtech.amel.service.GameService;
+import com.valtech.amel.service.PlayerGameRepository;
+import org.junit.Before;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.mockito.Mockito;
 import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 
 public class PlayerGameRepositoryClassTests {
-    Logger logger = LoggerFactory.getLogger(PlayerGameServiceTest.class);
-    GameRepositoryClass gameRepositoryClass = new GameRepositoryClass();
+    private GameRepositoryClass gameRepositoryClass;
+    private GameController gameController;
+
+    private GameRepository gameRepository;
+    private PlayerGameRepository playerGameRepository;
+
+    @Before
+    public void init(){
+        gameRepository = Mockito.mock(GameRepository.class);
+        playerGameRepository = Mockito.mock(PlayerGameRepository.class);
+        gameRepositoryClass = new GameRepositoryClass(gameRepository, playerGameRepository);
+        gameController = new GameController(new GameService(), gameRepositoryClass);
+
+    }
 
     @Test
     public void GameCreated(){
-        String gameId = gameRepositoryClass.createGame();
-        assertThat(gameRepositoryClass.createGame().isEmpty(), is(false));
-        assertThat(gameId.isEmpty(), is(false));
+        assertThat(gameRepositoryClass.createGame()>0, is(true));
     }
 
     @Test
     public void addGame(){
-        String gameId = gameRepositoryClass.createGame();
-        String playerId = gameRepositoryClass.createPlayerGame(gameId);
-        PlayerGame game = new PlayerGame();
-        gameRepositoryClass.addGame(gameId,playerId,game);
-        assertThat(gameRepositoryClass.getGame(gameId,playerId), is(game));
+        when(gameRepository.save(any()))
+                .thenReturn(new Game(10));
+        when(gameRepository.findById(10l))
+                .thenReturn(Optional.of((new Game(10))));
+
+        long gameId = gameRepositoryClass.createGame();
+        long playerId = gameRepositoryClass.createPlayerGame(10);
+
+        assertNotNull(gameRepositoryClass.getGame(gameId,playerId));
     }
 
     @Test (expected= GameNotInitialized.class)
     public void willReturnExceptionIfGameNotInitialzed() {
-        gameRepositoryClass.getGame("123","456");
+        gameRepositoryClass.getGame(123,456);
     }
 
     @Test(expected =PlayerNotFound.class)
     public  void willReturnExceptionIfPlayerNotFound(){
-        String gameId = gameRepositoryClass.createGame();
-        gameRepositoryClass.getGame(gameId,"456");
+        long gameId = gameRepositoryClass.createGame();
+        gameRepositoryClass.getGame(gameId,456);
     }
 
 

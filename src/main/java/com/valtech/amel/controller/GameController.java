@@ -42,7 +42,7 @@ public class GameController {
     @PostMapping(value = "")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Object> startGame() {
-        String gameId = gameRepositoryClass.createGame();
+        long gameId = gameRepositoryClass.createGame();
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{gameId}").buildAndExpand(gameId)
@@ -51,8 +51,8 @@ public class GameController {
     }
 
     @PostMapping(value = "/{gameId}/player")
-    public ResponseEntity addPlayer(@PathVariable String gameId) {
-        String playerId = gameRepositoryClass.createPlayerGame(gameId);
+    public ResponseEntity addPlayer(@PathVariable long gameId) {
+        long playerId = gameRepositoryClass.createPlayerGame(gameId);
         logger.info("Player {} is added to game {}", playerId, gameId);
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
@@ -61,13 +61,9 @@ public class GameController {
         return ResponseEntity.created(location).build();
     }
 
-
-
-
-
     @GetMapping(value = "/{gameId}/player/{playerId}")
     @ResponseBody
-    public GameDto spielStand(@PathVariable String gameId, @PathVariable String spielerId) {
+    public GameDto spielStand(@PathVariable long gameId, @PathVariable long spielerId) {
         logger.info("Spielstand wurde abgerufen für game with id {}, and player with id {}", gameId, spielerId);
         PlayerGame game = gameRepositoryClass.getGame(gameId, spielerId);
         List<FrameDto> frameDtos;
@@ -82,7 +78,7 @@ public class GameController {
 
     @PutMapping(value = "/{gameId}/player/{playerId}")
     @ResponseStatus(HttpStatus.OK)
-    public void spielerName(@PathVariable String gameId, @PathVariable String playerId,@RequestBody
+    public void spielerName(@PathVariable long gameId, @PathVariable long playerId,@RequestBody
             PlayerNameDto playerNameDto) {
         logger.info("Game with id {} Player {} has name  : {}", gameId, playerId, playerNameDto.getName());
         PlayerGame game = gameRepositoryClass.getGame(gameId, playerId);
@@ -92,7 +88,7 @@ public class GameController {
 
     @PostMapping(value = "/{gameId}/player/{playerId}/throw")
     @ResponseStatus(HttpStatus.OK)
-    public void wurf(@PathVariable String gameId, @PathVariable String spielerId, @RequestBody WurfDto wurfDto) {
+    public void wurf(@PathVariable long gameId, @PathVariable long spielerId, @RequestBody WurfDto wurfDto) {
         logger.info("Game Nr : {}. Player Nr ", gameId,spielerId);
         validateThrow(wurfDto);
         PlayerGame game = gameRepositoryClass.getGame(gameId, spielerId);

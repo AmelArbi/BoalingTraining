@@ -1,11 +1,9 @@
 package com.valtech.amel.service;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
 import com.valtech.amel.controller.GameController;
 import com.valtech.amel.controller.GameNotInitialized;
 import com.valtech.amel.controller.PlayerNotFound;
+import com.valtech.amel.model.Game;
 import com.valtech.amel.model.PlayerGame;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,49 +11,41 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class GameRepositoryClass {
+
+    private final GameRepository gameRepository;
+    private final PlayerGameRepository playerGameRepository;
+
     static final Logger logger = LoggerFactory.getLogger(GameController.class);
-    private Map<String, Map<String, PlayerGame>> games = new HashMap<>();
 
-    public PlayerGame getGame(String gameId, String playerId) {
-        Map<String, PlayerGame> spielerGames = games.get(gameId);
-        if (spielerGames == null) {
-            logger.error("Game with id : {} not Initialized.",gameId);
-            throw new GameNotInitialized();
-        }
-        PlayerGame game = spielerGames.get(playerId);
-        if (game == null) {
-            logger.error("Player not found.");
-            throw new PlayerNotFound();
-        }
-        return game;
+    public GameRepositoryClass(GameRepository gameRepository,
+            PlayerGameRepository playerGameRepository) {
+        this.gameRepository = gameRepository;
+        this.playerGameRepository = playerGameRepository;
+    }
+    //private Map<String, Map<String, PlayerGame>> games = new HashMap<>();
+
+    public PlayerGame getGame(long gameId, long playerId) {
+        Game game = gameRepository
+                .findById(gameId)
+                .orElseThrow(GameNotInitialized::new);
+        PlayerGame playerGame = playerGameRepository
+                .findByGameAndBAndId(game, playerId)
+                .orElseThrow(PlayerNotFound::new);
+        return playerGame;
     }
 
-    public String createGame(){
-        Map<String, PlayerGame> playerGames = new HashMap<>();
-        String gameId = UUID.randomUUID().toString();
-        games.put(gameId,playerGames);
-        logger.info("Game with id {} started, {} total games", gameId, games.size());
-        return gameId;
+    public Long createGame() {
+        Game game = gameRepository.save(new Game());
+        logger.info("Game with id {} started, {} total games", game.getId(), gameRepository.count());
+        return game.getId();
     }
 
-    public void addGame(String gameId, String playerId, PlayerGame game){
-        games.get(gameId).put(playerId, game);
+    public long createPlayerGame(long gameId) {
+        Game game = gameRepository.findById(gameId).orElseThrow(GameNotInitialized::new);
+        PlayerGame playerGame = new PlayerGame();
+        playerGame.setGame(game);
+        PlayerGame playerGame1 = playerGameRepository.save(playerGame);
+        return playerGame1.getId();
     }
-
-    public String createPlayerGame(String gameId) {
-        checkIfGameExist(gameId);
-        PlayerGame game = new PlayerGame();
-        String playerId = UUID.randomUUID().toString();
-        addGame(gameId, playerId, game);
-        return playerId;
-    }
-
-    private void checkIfGameExist(String gameId) {
-        if (!games.containsKey(gameId)) {
-            logger.error("game with id {} not exist ", gameId);
-            throw new GameNotInitialized();
-        }
-    }
-
 
 }
