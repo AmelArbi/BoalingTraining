@@ -47,7 +47,8 @@ public class PlayerGameRepositoryClassTests {
 
         when(playerGameRepository.save(any()))
                 .thenReturn(new PlayerGame(1));
-        when(playerGameRepository.findByGameAndById(gameRepository.findById(10l).get(),1l));
+        when(playerGameRepository.findByGameAndById(gameRepository.findById(10l).get(),1l))
+        .thenReturn(Optional.of(new PlayerGame(1)));
 
 
         long gameId = gameRepositoryClass.createGame();
