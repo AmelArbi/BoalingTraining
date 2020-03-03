@@ -55,19 +55,13 @@ public class PlayerGameRepositoryClassTests {
     public void getGameTest() {
         Game game = new Game(10);
 
-        when(gameRepository.save(any()))
-                .thenReturn(game);
         when(gameRepository.findById(10l))
                 .thenReturn(Optional.of((game)));
-        when(playerGameRepository.save(any()))
-                .thenReturn(new PlayerGame(1));
+
         when(playerGameRepository.findByGameAndById(game, 1l))
                 .thenReturn(Optional.of(new PlayerGame(1)));
 
-        long gameId = gameRepositoryClass.createGame();
-        long playerId = gameRepositoryClass.createPlayerGame(10);
-
-        assertNotNull(gameRepositoryClass.getGame(gameId, playerId));
+        assertNotNull(gameRepositoryClass.getGame(10, 1));
     }
 
     @Test(expected = GameNotInitialized.class)
