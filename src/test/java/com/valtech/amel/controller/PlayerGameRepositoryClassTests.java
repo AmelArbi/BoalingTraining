@@ -20,8 +20,6 @@ import static org.mockito.Mockito.when;
 @RunWith(MockitoJUnitRunner.class)
 public class PlayerGameRepositoryClassTests {
 
-
-
     @Mock
     private GameRepository gameRepository;
     @Mock
@@ -42,14 +40,19 @@ public class PlayerGameRepositoryClassTests {
         gameRepositoryClass.createPlayerGame(10);
     }
 
-//    @Test
-//    private void createPlayerGameTest(){
-//       Game game = new Game(10);
-//
-//       when(gameRepository.findById(10l))
-//               .thenReturn(Optional.of(game));
-//
-//    }
+    @Test
+    public void createPlayerGameTest(){
+       Game game = new Game(10);
+
+       when(gameRepository.findById(10l))
+               .thenReturn(Optional.of(game));
+
+       when(playerGameRepository.save(any()))
+               .thenReturn(new PlayerGame(1));
+
+      gameRepositoryClass.createPlayerGame(10);
+
+    }
 
     @Test
     public void getGameTest() {
