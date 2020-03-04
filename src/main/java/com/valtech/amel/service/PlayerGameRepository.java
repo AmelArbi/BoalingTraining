@@ -6,6 +6,6 @@ import com.valtech.amel.model.PlayerGame;
 import org.springframework.data.repository.CrudRepository;
 
 public interface PlayerGameRepository extends CrudRepository<PlayerGame, Long> {
-    Optional<PlayerGame> findByGameAndById(Game game, long id);
+    Optional<PlayerGame> findByGameAndId(Game game, long id);
 
 }

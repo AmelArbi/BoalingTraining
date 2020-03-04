@@ -12,8 +12,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class GameRepositoryClass {
 
-    private final GameRepository gameRepository;
-    private final PlayerGameRepository playerGameRepository;
+    private GameRepository gameRepository;
+    private PlayerGameRepository playerGameRepository;
 
     static final Logger logger = LoggerFactory.getLogger(GameController.class);
 
@@ -29,7 +29,7 @@ public class GameRepositoryClass {
                 .findById(gameId)
                 .orElseThrow(GameNotInitialized::new);
         PlayerGame playerGame = playerGameRepository
-                .findByGameAndById(game, playerId)
+                .findByGameAndId(game, playerId)
                 .orElseThrow(PlayerNotFound::new);
         return playerGame;
     }

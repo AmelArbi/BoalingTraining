@@ -9,12 +9,6 @@ public class BowlingWebApp {
 
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(BowlingWebApp.class, args);
-
-
-
-
-
-
     }
 
 }

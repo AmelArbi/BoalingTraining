@@ -28,45 +28,6 @@ public class PlayerGameRepositoryClassTests {
     @InjectMocks
     private GameRepositoryClass gameRepositoryClass;
 
-    @Test
-    public void GameCreated() {
-        when(gameRepository.save(any()))
-                .thenReturn(new Game(10));
-        assertThat(gameRepositoryClass.createGame() > 0, is(true));
-    }
-
-    @Test(expected = GameNotInitialized.class)
-    public void createPlayerGameThrowExceptionWhenGameNotInitialized() {
-        gameRepositoryClass.createPlayerGame(10);
-    }
-
-    @Test
-    public void createPlayerGameTest(){
-       Game game = new Game(10);
-
-       when(gameRepository.findById(10l))
-               .thenReturn(Optional.of(game));
-
-       when(playerGameRepository.save(any()))
-               .thenReturn(new PlayerGame(1));
-
-      gameRepositoryClass.createPlayerGame(10);
-
-    }
-
-    @Test
-    public void getGameTest() {
-        Game game = new Game(10);
-
-        when(gameRepository.findById(10l))
-                .thenReturn(Optional.of((game)));
-
-        when(playerGameRepository.findByGameAndById(game, 1l))
-                .thenReturn(Optional.of(new PlayerGame(1)));
-
-        assertNotNull(gameRepositoryClass.getGame(10, 1));
-    }
-
     @Test(expected = GameNotInitialized.class)
     public void willReturnExceptionIfGameNotInitialzed() {
         gameRepositoryClass.getGame(123, 456);
@@ -82,5 +43,43 @@ public class PlayerGameRepositoryClassTests {
         gameRepositoryClass.getGame(10, 456);
     }
 
+    @Test(expected = GameNotInitialized.class)
+    public void createPlayerGameThrowExceptionWhenGameNotInitialized() {
+        gameRepositoryClass.createPlayerGame(10);
+    }
+
+    @Test
+    public void GameCreated() {
+        when(gameRepository.save(any()))
+                .thenReturn(new Game(10));
+        assertThat(gameRepositoryClass.createGame() > 0, is(true));
+    }
+
+    @Test
+    public void createPlayerGameTest() {
+        Game game = new Game(10);
+
+        when(gameRepository.findById(10l))
+                .thenReturn(Optional.of(game));
+
+        when(playerGameRepository.save(any()))
+                .thenReturn(new PlayerGame(1));
+
+        gameRepositoryClass.createPlayerGame(10);
+
+    }
+
+    @Test
+    public void getGameTest() {
+        Game game = new Game(10);
+
+        when(gameRepository.findById(10l))
+                .thenReturn(Optional.of((game)));
+
+        when(playerGameRepository.findByGameAndId(game, 1l))
+                .thenReturn(Optional.of(new PlayerGame(1)));
+
+        assertNotNull(gameRepositoryClass.getGame(10, 1));
+    }
 
 }
