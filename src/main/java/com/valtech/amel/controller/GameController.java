@@ -11,7 +11,6 @@ import com.valtech.amel.model.PlayerGame;
 import com.valtech.amel.service.GameRepositoryClass;
 import com.valtech.amel.service.GameService;
 import com.valtech.amel.service.PlayerGameRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -32,14 +31,22 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/api")
 public class GameController {
 
-    @Autowired
-    private  GameService gameService;
 
-    @Autowired
-    private PlayerGameRepository playerGameRepository;
+    private  final GameService gameService;
 
-    @Autowired
-    private  GameRepositoryClass gameRepositoryClass;
+
+    private final PlayerGameRepository playerGameRepository;
+
+
+    private  final GameRepositoryClass gameRepositoryClass;
+
+    public GameController(GameService gameService, PlayerGameRepository playerGameRepository,
+            GameRepositoryClass gameRepositoryClass){
+
+        this.gameService = gameService;
+        this.playerGameRepository = playerGameRepository;
+        this.gameRepositoryClass = gameRepositoryClass;
+    }
 
 
 
