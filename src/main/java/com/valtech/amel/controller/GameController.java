@@ -46,12 +46,6 @@ public class GameController {
     }
 
 
-    @GetMapping(value = "/")
-    public ResponseEntity<String> startGameGet() {
-
-        return ResponseEntity.status(HttpStatus.OK).body("Hallo");
-    }
-
     @PostMapping(value = "/game")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Object> startGame() {
