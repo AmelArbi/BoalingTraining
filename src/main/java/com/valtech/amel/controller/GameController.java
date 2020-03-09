@@ -34,9 +34,7 @@ public class GameController {
 
     private  final GameService gameService;
 
-
     private final PlayerGameRepository playerGameRepository;
-
 
     private  final GameRepositoryClass gameRepositoryClass;
 
@@ -47,7 +45,6 @@ public class GameController {
         this.playerGameRepository = playerGameRepository;
         this.gameRepositoryClass = gameRepositoryClass;
     }
-
 
 
     @GetMapping(value = "/")

@@ -5,6 +5,7 @@ import com.valtech.amel.model.Game;
 import com.valtech.amel.model.PlayerGame;
 import com.valtech.amel.service.GameRepository;
 import com.valtech.amel.service.GameRepositoryClass;
+import com.valtech.amel.service.GameService;
 import com.valtech.amel.service.PlayerGameRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,6 +25,8 @@ public class PlayerGameRepositoryClassTests {
     private GameRepository gameRepository;
     @Mock
     private PlayerGameRepository playerGameRepository;
+    @Mock
+    private GameService gameService;
 
     @InjectMocks
     private GameRepositoryClass gameRepositoryClass;

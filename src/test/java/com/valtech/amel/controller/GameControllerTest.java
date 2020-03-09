@@ -1,10 +1,7 @@
 package com.valtech.amel.controller;
 
-import java.util.Optional;
 import com.valtech.amel.dto.PlayerNameDto;
-import com.valtech.amel.model.Game;
 import com.valtech.amel.model.PlayerGame;
-import com.valtech.amel.service.GameRepository;
 import com.valtech.amel.service.GameRepositoryClass;
 import com.valtech.amel.service.PlayerGameRepository;
 import org.junit.Test;
@@ -18,12 +15,15 @@ import static org.mockito.Mockito.when;
 @RunWith(MockitoJUnitRunner.class)
 public class GameControllerTest {
 
-    @Mock
-    private GameRepository gameRepository;
+/*
+    @Mock//!!!!!!!!!!!!!!!!!c
+    private GameService gameService;
+*/
+
     @Mock
     private PlayerGameRepository playerGameRepository;
 
-    @InjectMocks
+    @Mock
     private GameRepositoryClass gameRepositoryClass;
 
     @InjectMocks
@@ -34,14 +34,8 @@ public class GameControllerTest {
 
         PlayerGame playerGame = new PlayerGame(1);
 
-        Game game = new Game(10);
-
-        when(gameRepository.findById(10l))
-                .thenReturn(Optional.of(game));
-
-        when(playerGameRepository.findByGameAndId(game, 1))
-                .thenReturn(Optional.of(playerGame));
-
+        when(gameRepositoryClass.getGame(10l, 1))
+                .thenReturn(playerGame);
 
         when(playerGameRepository.save(any()))
                 .thenReturn(playerGame);
