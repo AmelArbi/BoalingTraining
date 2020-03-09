@@ -15,10 +15,6 @@ import static org.mockito.Mockito.when;
 @RunWith(MockitoJUnitRunner.class)
 public class GameControllerTest {
 
-/*
-    @Mock//!!!!!!!!!!!!!!!!!c
-    private GameService gameService;
-*/
 
     @Mock
     private PlayerGameRepository playerGameRepository;
@@ -28,6 +24,7 @@ public class GameControllerTest {
 
     @InjectMocks
     private GameController gameController;
+
 
     @Test
     public void playerNameTest() {

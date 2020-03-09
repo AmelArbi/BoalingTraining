@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -55,9 +54,6 @@ public class GameController {
 
     @PostMapping(value = "/game")
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(value = "New bowling game",
-    notes = "start a new Bowling game",
-    response = ResponseEntity.class)
     public ResponseEntity<Object> startGame() {
         long gameId = gameRepositoryClass.createGame();
         URI location = ServletUriComponentsBuilder
@@ -68,7 +64,6 @@ public class GameController {
     }
 
     @PostMapping(value = "/game/{gameId}/player")
-    //@ResponseStatus(HttpStatus.OK)
     public ResponseEntity addPlayer(@PathVariable long gameId) {
         long playerId = gameRepositoryClass.createPlayerGame(gameId);
         log.info("Player {} with name {} is added to game {}", playerId,
