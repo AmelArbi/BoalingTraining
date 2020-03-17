@@ -13,7 +13,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -53,9 +52,13 @@ public class PlayerGameRepositoryClassTests {
 
     @Test
     public void GameCreated() {
+        Game game = new Game(10);
+
         when(gameRepository.save(any()))
-                .thenReturn(new Game(10));
+                .thenReturn(game);
+
         assertThat(gameRepositoryClass.createGame() > 0, is(true));
+        assertThat(gameRepositoryClass.createGame(), is(10l));
     }
 
     @Test
@@ -68,7 +71,8 @@ public class PlayerGameRepositoryClassTests {
         when(playerGameRepository.save(any()))
                 .thenReturn(new PlayerGame(1));
 
-        gameRepositoryClass.createPlayerGame(10);
+
+        assertThat(gameRepositoryClass.createPlayerGame(10),is(1l));
 
     }
 
@@ -76,13 +80,19 @@ public class PlayerGameRepositoryClassTests {
     public void getGameTest() {
         Game game = new Game(10);
 
+        PlayerGame playerGame = new PlayerGame(1);
+
         when(gameRepository.findById(10l))
                 .thenReturn(Optional.of((game)));
 
         when(playerGameRepository.findByGameAndId(game, 1l))
-                .thenReturn(Optional.of(new PlayerGame(1)));
+                .thenReturn(Optional.of(playerGame));
 
-        assertNotNull(gameRepositoryClass.getGame(10, 1));
+        //assertNotNull(gameRepositoryClass.getGame(10, 1));
+        assertThat(gameRepositoryClass.getGame(10l,1l), is(playerGame));
+
     }
+
+
 
 }

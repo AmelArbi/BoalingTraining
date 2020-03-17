@@ -18,4 +18,7 @@ public class FrameDto {
         return score;
     }
 
+    public List<Integer> getThrowList() {
+        return throwList;
+    }
 }

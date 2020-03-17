@@ -2,7 +2,7 @@ package com.valtech.amel.dto;
 
 public class PlayerNameDto {
 
-    String name;
+    private String name;
 
     public PlayerNameDto() {
     }

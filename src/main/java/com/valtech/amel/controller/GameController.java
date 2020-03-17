@@ -30,21 +30,19 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/api")
 public class GameController {
 
-
-    private  final GameService gameService;
+    private final GameService gameService;
 
     private final PlayerGameRepository playerGameRepository;
 
-    private  final GameRepositoryClass gameRepositoryClass;
+    private final GameRepositoryClass gameRepositoryClass;
 
     public GameController(GameService gameService, PlayerGameRepository playerGameRepository,
-            GameRepositoryClass gameRepositoryClass){
+            GameRepositoryClass gameRepositoryClass) {
 
         this.gameService = gameService;
         this.playerGameRepository = playerGameRepository;
         this.gameRepositoryClass = gameRepositoryClass;
     }
-
 
     @PostMapping(value = "/game")
     @ResponseStatus(HttpStatus.OK)
@@ -60,8 +58,8 @@ public class GameController {
     @PostMapping(value = "/game/{gameId}/player")
     public ResponseEntity addPlayer(@PathVariable long gameId) {
         long playerId = gameRepositoryClass.createPlayerGame(gameId);
-        log.info("Player {} with name {} is added to game {}", playerId,
-                gameRepositoryClass.getGame(gameId, playerId).getPlayerName(), gameId);
+        log.info("Player nr 2 {} is added to game {}", playerId,
+                gameRepositoryClass.getGame(gameId, playerId));
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{id}").buildAndExpand(playerId)
@@ -74,17 +72,16 @@ public class GameController {
     public void playerName(@PathVariable long gameId, @PathVariable long playerId,
             @RequestBody PlayerNameDto playerNameDto) {
         log.info("Game with id {} Player {} has name  : {}", gameId, playerId, playerNameDto.getName());
-        PlayerGame game = gameRepositoryClass.getGame(gameId, playerId);
-
-        game.setPlayerName(playerNameDto.getName());
-        playerGameRepository.save(game);////////////////
-        log.info("Playername {} in game : {}", game.getPlayerName(), gameId);
+        PlayerGame playerGame = gameRepositoryClass.getGame(gameId, playerId);
+        playerGame.setPlayerName(playerNameDto.getName());
+        playerGame = playerGameRepository.save(playerGame);
+        log.info("Playername {} in game : {}", playerGame.getPlayerName(), gameId);
     }
 
     @GetMapping(value = "/game/{gameId}/player/{playerId}")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    public GameDto spielStand(@PathVariable long gameId, @PathVariable long playerId) {
+    public GameDto getScores(@PathVariable long gameId, @PathVariable long playerId) {
         log.info("Spielstand wurde abgerufen für game with id {}, and player with id {}", gameId, playerId);
         PlayerGame game = gameRepositoryClass.getGame(gameId, playerId);
         List<FrameDto> frameDtos;
@@ -93,20 +90,24 @@ public class GameController {
                 .map(frame -> new FrameDto(frame.getThrowList(),
                         gameService.calculateScore(game, frame.getNumber() + 1)))
                 .collect(Collectors.toList());
-        log.info("List<FrameDto>frameDtos {}", frameDtos);
         GameDto gameDto = new GameDto(game.getIteration(), frameDtos, game.getPlayerName());
+        log.info("List of frames ", gameDto.getFrames());
+        for (int i = 0; i < gameDto.getFrames().size(); i++) {
+            log.info("ThrowList for frame nr : {} is ", i, gameDto.getFrames().get(i).getThrowList());
+
+        }
         return gameDto;
     }
 
     @PutMapping(value = "/game/{gameId}/player/{playerId}/throw")
     @ResponseStatus(HttpStatus.OK)
-    public void wurf(@PathVariable long gameId, @PathVariable long playerId, @RequestBody WurfDto wurfDto) {
+    public void addThrow(@PathVariable long gameId, @PathVariable long playerId, @RequestBody WurfDto wurfDto) {
         log.info("Game Nr : {}. Player Nr {}", gameId, playerId);
         validateThrow(wurfDto);
         PlayerGame playerGame = gameRepositoryClass.getGame(gameId, playerId);
         log.info("in game {} player {} throws {} ", gameId, playerGame.getPlayerName(), wurfDto.getZahl());
         gameService.wurfelnAccept(wurfDto.getZahl(), playerGame);
-        playerGameRepository.save(playerGame);/////////////////////////
+        playerGameRepository.save(playerGame);
     }
 
     private void validateThrow(WurfDto wurfDto) {
